@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=STIX+Two+Text:wght@400;500;600;700&display=swap');
+
+.navContainer{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navLogo{
+    font-family: 'STIX Two Text';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 90px;
+    color: #292929;
+}
+
+.hamburger{
+    display: none;
+}
+
+.navLinks{
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    color: #292929;
+    padding: 0 0 0 0;
+    height: 30px;
+    margin: 5% 0 0 0;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navLinks::after{
+    content: '';
+    background-color: #292929;
+    height: 2px;
+    width: 0;
+    position: absolute;
+    bottom: -1%;
+    left: 0;
+    transition: width 1s;
+}
+
+.navLinks:hover::after{
+    content: '';
+    background-color: #292929;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: -1%;
+    left: 0;
+    transition: width 1s;
+}
+
+.navLinksUnderline{
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    color: #292929;
+    padding: 0 0 0 0;
+    height: 30px;
+    margin: 5% 0 0 0;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navLinksUnderline::after{
+    content: '';
+    background-color: #292929;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: -1%;
+    left: 0;
+
+}
+
+.linkContainer{
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.iconContainer{
+    display: flex;
+    width: 10%;
+    justify-content: space-between;
+    padding: 2.7% 0 0 0;
+}
+
+.cartImg{
+    position: relative;
+}
+
+.cartImg::before{
+    content: '';
+    position: absolute;
+    right: -3px;
+    top: 0;
+    width: 3px;
+    height: 3px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 1100px) {
+    .navContainer{
+        width: 96%;
+    }
+    .navLogo{
+        font-style: normal;
+        font-size: 24px;
+        line-height: 52px;
+    }
+    .linkContainer{
+        display: none;
+    }
+
+    .notificationImg{
+        display: none;
+    }
+
+    .hamburger{
+        display: block;
+        padding: 5% 0 0 0;
+    }
+
+    .iconContainer{
+        padding: 5% 0 0 0;
+        width: 15%;
+    }
+}

@@ -1,0 +1,25 @@
+.products{
+    background-color: white;
+    padding: 20% auto 0 auto;
+    margin: 0 0 15% 0;
+    border-radius: 6px;
+    padding: 7% 7%;
+    font-family: 'Satoshi';
+    font-style: normal;
+}
+
+.name{
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 157.6%;
+    color: #333333;
+}
+
+.price{ 
+font-weight: 700;
+font-size: 28px;
+line-height: 157.6%;
+color: #333333;
+margin: 3% 0 0 0;
+/* color: red; */
+}

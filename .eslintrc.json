@@ -3,6 +3,8 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "warn",
-    "no-console": "warn"
+    "no-console": "warn",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
   }
 }

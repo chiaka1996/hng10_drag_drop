@@ -1,0 +1,55 @@
+.footerContainer{
+    padding: 0 10% 0 15%;
+    display: grid;
+    grid-template-columns: 25% 20% 20% 35%;
+    justify-content: space-between;
+}
+
+.heading{
+    font-family: 'Clash Display';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 59px;
+    color: #292929;
+    transform: translateY(40%);
+}
+
+.footerContainer ul{
+    list-style: none;
+}
+
+.footerContainer ul li{
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 35px;
+    color: #333333;
+    margin: 20% 0 0 0;
+}
+
+.listFlex{
+    display: flex;
+    flex-direction: row;
+    transform: translateY(-90%);
+    margin: 0 0 0 0;
+}
+
+.footerContainer ul li div{
+    padding: 0 0 0 5%;
+    transform: translateY(-5%);
+}
+
+.rights{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 21px;
+    letter-spacing: -0.02em;
+    color: #333333;
+    opacity: 0.5;
+    margin: 2% 0 0 0;
+    text-align: center;
+    }
