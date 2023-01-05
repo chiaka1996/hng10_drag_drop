@@ -1,6 +1,6 @@
-import NavBar from '../Components/NavBar/NavBar';
-import Sidebar from '../Components/SideBar/SideBar';
-import cs from '../styles/cart.module.css';
+import NavBar from '../../Components/NavBar/NavBar';
+import Sidebar from '../../Components/SideBar/SideBar';
+import cs from '../../styles/cart.module.css';
 import Image from 'next/image';
 
 const Cart = () => {
