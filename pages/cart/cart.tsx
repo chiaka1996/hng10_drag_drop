@@ -21,15 +21,15 @@ const Cart = () => {
         </div>
       </div>
 
+      {/* this div is seen only on mobile view */}
+      <div className={cs.currentLink}>
+        Home/ Marketplace/ <span>Cart</span>
+      </div>
+
       <section className={cs.cartItems}>
         <div className={cs.item}>
-          <div>
-            <Image
-              src="/Rectangle1.png"
-              alt="cart list"
-              width={200}
-              height={180}
-            />
+          <div className={cs.cartImgContainer}>
+            <Image src="/Rectangle1.png" alt="cart list" fill />
           </div>
           <div className={cs.itemDetails}>
             <div className={cs.itemHeader}>
@@ -40,6 +40,7 @@ const Cart = () => {
                   alt="cancel item"
                   width={12}
                   height={12}
+                  // fill
                 />
               </div>
             </div>
@@ -59,13 +60,14 @@ const Cart = () => {
       </section>
 
       <section className={cs.checkout}>
-        <div style={{ width: '35%' }}>
+        {/* this div only shows on desktop */}
+        <div style={{ width: '35%' }} className={cs.proceedDesktop}>
           <button>Proceed to checkout</button>
           <div className={cs.continue}>
             <span>Continue Shopping</span>
           </div>
         </div>
-        <div style={{ width: '50%' }}>
+        <div className={cs.checkoutDetailsContainer}>
           <div className={cs.checkoutDetails}>
             <div>Products in cart :</div> <span>3 items</span>
           </div>
@@ -76,6 +78,15 @@ const Cart = () => {
           <div className={cs.checkoutDetails}>
             <div>Total :</div>
             <span>$114.0</span>
+          </div>
+        </div>
+        {/* this div only shows on mobile */}
+        <div className={cs.proceedMobile}>
+          <div className={cs.btnHouse}>
+            <button className={cs.mobileBtn}>Proceed to checkout</button>
+          </div>
+          <div className={cs.continue}>
+            <span>Continue Shopping</span>
           </div>
         </div>
       </section>

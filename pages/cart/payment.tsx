@@ -22,6 +22,11 @@ const Payment = () => {
         </div>
       </div>
 
+      {/* this div is seen only on mobile view */}
+      <div className={cs.currentLink}>
+        Home/ Marketplace/ Cart/Shipping/<span>Payment</span>
+      </div>
+
       <div className={style.methodFlex}>
         <span className={style.paymentMethod}>Payment method</span>
         <div className={style.secureFlex}>
@@ -35,9 +40,10 @@ const Payment = () => {
           <div className={style.paymentForm}>
             <div className={style.radioDiv}>
               <div className={style.radioContainer}>
-                <input type="radio" />
+                <input type="radio" className={style.inputRadio} />
                 <span>Select your wallet</span>
               </div>
+              {/* these images only appear on desktop */}
               <div className={style.walletImgs}>
                 <Image src="/meta.png" alt="meta" width={35} height={35} />
                 <Image
@@ -53,6 +59,19 @@ const Payment = () => {
             <div className={style.connect}>
               Connect with one of our available wallet providers or add and
               connect a new wallet.
+            </div>
+
+            {/* these image only appear on mobile */}
+            <div className={style.walletImgsMobile}>
+              <Image src="/meta.png" alt="meta" width={35} height={35} />
+              <Image
+                src="/coinbase.png"
+                alt="coinbase"
+                width={35}
+                height={35}
+              />
+              <Image src="/connect.png" alt="meta" width={35} height={35} />
+              <Image src="/phantom.png" alt="meta" width={35} height={35} />
             </div>
 
             <div className={style.formContainer}>
@@ -94,7 +113,9 @@ const Payment = () => {
               </div>
             </div>
           </div>
-          <button className={style.confirmBtn}>Confirm</button>
+          <div className={style.confirmBtnContainer}>
+            <button className={style.confirmBtn}>Confirm</button>
+          </div>
         </div>
 
         <div className={style.summaryContainer}>

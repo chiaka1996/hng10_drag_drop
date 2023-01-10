@@ -1,3 +1,6 @@
+.currentLink{
+    display: none;
+}
 .cartNav{
     width: 35%;
     margin: 4% auto;
@@ -79,6 +82,10 @@
     justify-content: space-between;
 }
 
+.postalContainer input, .postalContainer select{
+    margin: 0 0 0 0;
+}
+
 .gridItem1 input, .gridItem1 select{
     width: 97%;
     height: 50px;
@@ -132,9 +139,14 @@
     cursor: pointer;
 }
 
+.goBackToCart{
+    display: none;
+}
+
 .gridItem2{
     border-top: 0.3px solid #dad8d8;
     padding: 5% 0 0 0;
+    display: block;
 }
 
 .cartItems{
@@ -249,5 +261,76 @@
 
 .checkoutDetails span{
     color: #292929;
+}
+
+/* /////// mobile design for shipping  ///////*/
+@media only screen and (max-width: 1000px) {
+    .currentLink{
+        display: block;
+        font-family: 'Satoshi';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 52px;
+        color: #BCB7B7;
+        margin: 0 0 2% 0;
+    }
+
+    .currentLink span{
+        color: #000000;
+    }
+
+    .cartNav{
+        display: none;
+    }
+
+    .shippingContainer{
+        display: block;
+        width: 98%;
+    }
+
+    .checkboxContainer .checkbox{
+        width: 15px;
+        height: 15px;
+    }
+    
+    .checkboxContainer span{
+        font-size: 14px;
+    }
+
+    .postalContainer{
+        margin: 0 0 0 0;
+        display: block;
+    }
+
+    .postalContainer input, .postalContainer select{
+        margin: 0 0 5% 0;
+    }
+
+    .buttonContainer{
+        text-align: center;
+    }
+
+    .gridItem1 button{
+        height: 56px;
+        width: 80%;
+        font-size: 17px;
+        border-radius: 4px;
+        margin: 5% auto;
+    }
+
+    .gridItem2{
+        display: none;
+    }
+
+    .goBackToCart{
+        font-weight: 400;
+        font-size: 18px;
+        color: #006CA2;
+        margin: 2% 0;
+        display: block;
+        text-align: center;
+        text-decoration: underline;
+    }
 }
 

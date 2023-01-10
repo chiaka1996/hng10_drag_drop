@@ -1,3 +1,6 @@
+.currentLink{
+    display: none;
+}
 .cartNav{
     width: 35%;
     margin: 5% auto;
@@ -64,6 +67,12 @@
     flex-direction: row;
 }
 
+.cartImgContainer{
+    width: 200px;
+    height: 180px;
+    position: relative;
+}
+
 .itemDetails{
     padding: 0 3%;
     width: 100%;
@@ -102,6 +111,7 @@
     line-height: 32px;
     color: #888888;
     padding: 2% 0;
+    display: block;
 }
 
 .size{
@@ -151,6 +161,19 @@
     font-style: normal;
 }
 
+.checkout .proceedMobile{
+    display: none;
+}
+
+.checkout .proceedDesktop{
+    display: block;
+    width: 35%;
+}
+
+.checkout .checkoutDetailsContainer{
+    width: 50%;
+}
+
 .checkout button{
     font-family: 'Satoshi';
     font-style: normal;
@@ -164,6 +187,7 @@
     border: 1px solid #3341C1;
     height: 97px;
     cursor: pointer;
+    margin: 0 0;
 }
 
 .continue{
@@ -210,6 +234,108 @@
 
 .checkoutDetails span{
     color: #292929;
+}
+
+@media only screen and (max-width: 1000px) {
+    .currentLink{
+        display: block;
+        font-family: 'Satoshi';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 52px;
+        color: #BCB7B7;
+        margin: 0 0 2% 0;
+    }
+
+    .currentLink span{
+        color: #000000;
+    }
+
+    .cartNav{
+        display: none;
+    }
+
+    .cartItems{
+        width: 96%;
+        border: none;
+    }
+
+    .item{
+        padding: 5% 0;
+    }
+
+    .cartImgContainer{
+        width: 125px;
+        height: 105px;
+    }
+
+    .itemHeader header{
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 32px;
+        color: #292929;
+    }
+
+    .cancelContainer{
+        width: 20px;
+        height: 20px;
+        transform: translateY(10%)
+    }
+
+    .clearamane{
+        display: none;
+    }
+
+    .size{
+        font-size: 16px;
+    }
+
+    .price{
+        font-size: 20px;
+    }
+
+    .quantity{
+        font-size: 24px;
+        width: 30%;
+    }
+
+    .checkout{
+        display: block;
+        width: 96%;
+    }
+
+    .checkout .proceedMobile{
+    display: block;
+    width: 96%;
+    }
+
+    .checkout .proceedDesktop{
+        display: none;
+    }
+
+    .checkout .checkoutDetailsContainer{
+        width: 96%;
+    }
+
+    .checkoutDetails{
+        font-size: 20px;
+    }
+
+    .btnHouse{
+        text-align: center;
+    }
+
+  .checkout button{
+    width: 80%;
+    font-size: 18px;
+    height: 60px;
+    margin: 15% 0 0 0;
+  }
+
+  .continue{
+    font-size: 18px;
+  }
 }
 
 

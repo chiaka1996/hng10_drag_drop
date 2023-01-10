@@ -21,6 +21,11 @@ const ShippingDetails = () => {
         </div>
       </div>
 
+      {/* this div is seen only on mobile view */}
+      <div className={cs.currentLink}>
+        Home/ Marketplace/ Cart/ <span>Shipping</span>
+      </div>
+
       <section className={cs.shippingContainer}>
         <div className={cs.gridItem1}>
           <div className={cs.inputContainer}>
@@ -70,8 +75,14 @@ const ShippingDetails = () => {
             <label>Phone number</label>
             <input type="text" placeholder="08012345698" />
           </div>
-          <button>Proceed to payment</button>
+          <div className={cs.buttonContainer}>
+            <button>Proceed to payment</button>
+          </div>
+
+          {/* this div is to be viewed only on mobile */}
+          <div className={cs.goBackToCart}>Go back to cart</div>
         </div>
+
         <div className={cs.gridItem2}>
           <section className={cs.cartItems}>
             <div className={cs.item}>
