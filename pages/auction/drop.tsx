@@ -5,7 +5,7 @@ import Footer from '../../Components/Footer/Footer';
 
 const Drop = () => {
   return (
-    <div className={css.dropContainer}>
+    <main className={css.dropContainer}>
       <NavBar page="drop" />
       <Sidebar />
 
@@ -26,6 +26,8 @@ const Drop = () => {
           style={{ backgroundImage: `url('/eko.png')` }}
           className={css.showImage}
         >
+          {/* button only shows for mobile */}
+          <button className={css.upcomingMobile}>UPCOMING</button>
           <div className={css.timeContainer}>
             <div style={{ width: '100%' }}>
               <div className={css.timeHeader}>Time remaining</div>
@@ -40,8 +42,8 @@ const Drop = () => {
           <div className={css.imgDate}>November 21 at 11 am WAT</div>
           <div className={css.imgTitle}>Eyo : Eko For Show</div>
           <div className={css.imgLorem}>
-            Lorem ipsum dolor sit amet consectetur. Amet odio a aenean quis
-            vitae tempus. Sed nunc tempus aliquet lectus ut vulputate.
+            bullu balla bullu balla balla blu blu, Amet odio a aenean quis vitae
+            tempus. Sed nunc tempus aliquet lectus ut vulputate.
           </div>
           <div className={css.imgCreator}>
             Creator : <span>Aliya Minat</span>
@@ -55,6 +57,8 @@ const Drop = () => {
           style={{ backgroundImage: `url('/flower.png')` }}
           className={css.showImage}
         >
+          {/* button only shows for mobile */}
+          <button className={css.liveMobile}>LIVE NOW</button>
           <div className={css.timeContainer}>
             <div style={{ width: '100%' }}>
               <div className={css.timeHeader}>Time remaining</div>
@@ -84,6 +88,8 @@ const Drop = () => {
           style={{ backgroundImage: `url('/water.png')` }}
           className={css.showImage}
         >
+          {/* button only shows for mobile */}
+          <button className={css.mobileEndedBtn}>ENDED</button>
           <div className={css.timeContainer}>
             <div style={{ width: '100%' }}>
               <div className={css.timeHeader}>Auction ended</div>
@@ -118,6 +124,8 @@ const Drop = () => {
           }}
           className={css.showImage}
         >
+          {/* button only shows for mobile */}
+          <button className={css.mobileEndedBtn}>ENDED</button>
           <div className={css.timeContainer}>
             <div style={{ width: '100%' }}>
               <div className={css.timeHeader}>Auction ended</div>
@@ -145,20 +153,8 @@ const Drop = () => {
 
       <div className={css.seeMore}>See more</div>
 
-      <div className={css.newsletter}>
-        <div>
-          <div className={css.letterHeader}>NEWSLETTER</div>
-          <div className={css.subscribe}>
-            Subscribe to get daily updates on new drops & exciting deals
-          </div>
-          <div className={css.formContainer}>
-            <input type="text" placeholder="ENTER YOUR EMAIL" />
-            <button>SUBSCRIBE</button>
-          </div>
-        </div>
-      </div>
       <Footer />
-    </div>
+    </main>
   );
 };
 

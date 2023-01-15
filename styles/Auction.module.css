@@ -3,7 +3,9 @@
     font-family: 'Satoshi';
     font-style: normal;
     background-color: 'rgb(252, 252, 252)';
+    display: block;
 }
+
 .navigate{
     padding: 3% 0 3% 10%;
     font-weight: 500;
@@ -30,6 +32,13 @@
     max-width: 90%;
     margin: 0 0 0 10%;
     overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.slideImgContainer{
+    width: 485px;
+    height: 396px;
+    position: relative;
 }
 
 .auctionImages::-webkit-scrollbar{
@@ -90,6 +99,12 @@
     margin: 0 0 7% 0;
 }
 
+.auctionImgHouse{
+    width: 500px;
+    height: 210px;
+    position: relative;
+}
+
 .loveContainer{
     display: flex;
     flex-direction: row;
@@ -143,6 +158,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 0 0 0 0;
 }
 
 .currentBidContainer button{
@@ -173,7 +189,18 @@
 }
 
 
-/*////////////////// live bid styles ///////////////////////////////*/
+/*////////////////// live bid styles for desktop ///////////////////////////////*/
+.auctContainerLive{
+    font-family: 'Satoshi';
+    font-style: normal;
+    background-color: 'rgb(252, 252, 252)';
+    display: block;
+}
+
+.mobileAuctionContainer{
+    display: none;
+}
+
 .bidContainer{
     border: 0.5px solid #1E1E1E;
     height: 700px;
@@ -333,9 +360,8 @@
 .upcoming{
     font-family: 'Satoshi';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 48px;
-    line-height: 100%;
     color: #000000;
     text-align: center;
 }
@@ -374,7 +400,6 @@
     margin: 5% 10%;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
 }
 
 .showImage{
@@ -442,6 +467,7 @@
     font-size: 16px;
     line-height: 50.5%;
     color: #FFFFFF;
+    display: block;
     }
 
     .timeFlex .endedBtn{
@@ -466,6 +492,7 @@
     line-height: 22px;
     color: #FFFFFF;
     border: 0.5px solid #4693ED;
+    display: block;
 }
 
 .imageDetailsLive button{
@@ -476,6 +503,10 @@
 .imageDetailsEnded button{
     background: #999EA5;
     border: 0.5px solid #999EA5;
+}
+
+.upcomingMobile, .liveMobile, .mobileEndedBtn{
+    display: none;
 }
 
 .imgDate{
@@ -532,6 +563,7 @@
     position: absolute;
     bottom: 1%;
     left: 20%;
+    margin: 0 0;
 }
 
 .getNotified::after{
@@ -567,73 +599,368 @@
     background-color: #F7F4F4;
 }
 
-.newsletter{
-    border: 1px solid #333333;
-    height: 300px;
-    width: 90%;
-    margin: 8% auto 3% auto;
-    text-align: center;
+
+/* //////////////////////////mobile design//////////////////// */
+@media only screen and (max-width: 1000px) {
+    .navigate{
+        padding: 3% 0 3% 2%;
+    }
+
+    .overview{
+        font-size: 20px;
+        padding: 0 0 3.5% 2%;
+    }
+
+    .auctionImages{
+        max-width: 100%;
+        margin: 0 0 0 0%;
+    }
+
+    .topBidGrid{
+        display: block;
+        width: 96%;
+        margin: 0 auto 0 auto;
+    }
+
+    .slideImgContainer{
+       max-width: 228px;
+        height: 186px;
+        position: relative;
+    }
+
+    .imgTime{
+        font-size: 20px;
+        padding: 0 4%;
+        line-height: 32px;
+    }
+
+    .topBids{
+        font-size: 21px;
+        padding: 5% 0 5% 2%;
+    }
+
+    .auctionImgHouse{
+        width: 100%;
+        height: 210px;
+    }
+
+    .subText{
+        font-size: 22px;
+    }
+
+    .details{
+        font-size: 20px;
+    }
+
+    .details span{
+        font-size: 20px;
+    }
+
+    .bid{
+        font-size: 17px;
+    }
+
+    .bidPrice{
+        font-size: 19px;
+    }
+
+    .currentBidContainer{
+        margin: 0 0 10% 0;
+    }
+
+    .currentBidContainer button{
+        width: 150px;
+        height: 50px;
+        font-size: 13px;
+    }
+
+    
+
+/* ////////////////////// mobile design for live bid page /////////////////////////*/
+.auctContainerLive{
+    display: none;
+}
+
+.mobileAuctionContainer{
+    display: block;
+    width: 100%;
+    height: 105vh;
+    background: url('/bid.png');
+    background-size: 100% 100%;
+    padding: 2% 5%;
+    position: relative;
+}
+
+.topFlex{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex1{
+    flex: 1;
+}
+
+.tagLost{
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.mobileLive{
+    font-family: 'Satoshi';
+    font-style: normal;
+    width: 49px;
+    height: 27px;
+    background: #006CA2;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 13px;
+    color: white;
+    border: 1px solid #006CA2;
+}
+
+.eyeContainer{
+    display: 'flex';
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.liveCount{
+    width: 65px;
+    height: 27px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin: 0 0 0 3%;
 }
 
-.letterHeader{
-    font-family: 'Baskervville';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 39px;
-    text-transform: uppercase;
-    color: #333333;
-    margin: 0 0 1% 0;
+.eyeImg{
+    transform: translateX(-25%);
 }
 
-.subscribe{
+.liveCount span{
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 157%;
+    color: #FFFFFF
+}
+
+.mobileCancel{
+    transform: translateY(40%);
+    margin: 0 0 0 5%;
+}
+
+.cancel1, .cancel2{
+    height: 1px;
+    background-color: white;
+    width: 20px;
+}
+
+.cancel1{
+    transform: rotate(45deg);
+}
+
+.cancel2{
+    transform: rotate(135deg);
+}
+
+.mobileBid{
     font-family: 'Satoshi';
     font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 43px;
-    color: #333333;
-}
-
-.formContainer{
-    margin: 2% 0 0 0;
-}
-
-.formContainer input{
-    width: 446px;
-    height: 60px;
-    border: 1px solid #333333;
-    font-family: 'Baskervville';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 21px;
-    text-transform: uppercase;
-    color: #333333;
-    padding: 0 0 0 5%;
-    outline: none;
-}
-
-.formContainer button{
-    width: 180px;
-    height: 60px;
-    background: #272727;
-    border: 1px solid #333333;
-    margin: 0 0 0 2%;
-    font-family: 'Baskervville';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 21px;
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 157%;
     color: #FFFFFF;
-    cursor: pointer;
+    transform: translateY(42vh);
+    text-align: center;
 }
 
-.formContainer button:hover{
-    background-color: black;
+.commentContainer{
+    padding: 0 0;
+}
+
+.commentSection{
+    position: absolute;
+    bottom: 2%;
+    width: 90%;
+}
+
+.list{
+    margin: 0 0 5% 0;
+}
+
+.name{
+    color: white;
+    font-size: 13px;
+}
+
+.comm{
+    color: white;
+    font-size: 13px;
+}
+
+.bidInputContainer{
+    padding: 0 0;
+}
+
+.creator{
+    font-size: 14px;
+}
+
+.inputHouse{
+    position: relative;
+    width: 72%;
+}
+
+.inputHouse::after{
+    position: absolute;
+    content: url('/whitecomment.png');
+    top: 20%;
+    right: -5%;
+}
+
+.inputLoveContainer{
+    width: 100%;
+}
+
+.bidInput{
+    width: 100%;
+    height: 35px;
+    left: 28px;
+    top: 688px;
+    border: 1px solid #FFFFFF;
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+
+
+/* ///////////////css design for drop page ////////////////////////*/
+    .upcoming{
+        font-weight: 700;
+        font-size: 38px;
+    }
+
+    .notification{
+        font-size: 18px;
+        line-height: 157%;
+        margin: 5% 0;
+    }
+
+    .notifyMe{
+        font-size: 23px;
+        width: 70%;
+        height: 53px;
+        margin: 1% auto 10% auto;
+    }
+
+    .showContainer{
+        width: 96%;
+        margin: 5% auto;
+        display: block;
+    }
+
+    .showImage{
+        width: 100%;
+        margin: 0 auto;
+        height: 195px;
+        background-size: contain;
+    }
+
+    .imgLorem{
+        width: 100%;
+    }
+
+    .timeContainer{
+        width: 96%;
+        height: 72px;
+        left: 2%;
+        /* margin: 0 auto; */
+    }
+
+    .timeHeader{
+        font-size: 16px;
+    }
+
+    .timeFlex span{
+        font-size: 22px;
+    }
+
+    .imageDetails button, .imageDetailsLive button, .imageDetailsEnded button{
+        display: none;
+    }
+
+    .upcomingMobile, .liveMobile, .mobileEndedBtn{
+        display: block;
+        position: absolute;
+        top: 5%;
+        right: 2%;
+        background: #4693ED;
+        border-radius: 4px;
+        font-size: 11px;
+        color: white;
+        width: 95px;
+        height: 20px;
+        border: 0.5px solid #4693ED;
+    }
+
+    .liveMobile{
+        background: #3EA03B;
+        border: 0.5px solid #3EA03B;
+    }
+
+    .mobileEndedBtn{
+        background: #999EA5;
+        border: 0.5px solid #999EA5;
+    }
+
+    .timeFlex button{
+        display: none;
+    }
+
+    .imageDetails, .imageDetailsLive, .imageDetailsEnded{
+        padding: 0 0 0 0;
+    }
+
+    .imgDate{
+        font-size: 16px;
+        margin: 10% 0 5% 0;
+    }
+
+    .imgTitle{
+        font-size: 24px;
+        line-height: 35px;
+    }
+
+    .imgLorem{
+        font-size: 15px;
+        margin: 5% 0 5% 0;
+    }
+
+    .imgCreator{
+        font-size: 20px;
+    }
+
+    .getNotified{
+        position: relative;
+        left: 0;
+        margin: 3% 0 10% 0;
+        text-decoration: underline;
+    }
+
+    .getNotified::after{
+        width: 0;
+    }
+
+    .seeMore{
+        width: 70%;
+        height: 50px;
+        font-size: 24px;
+    }
+    
 }

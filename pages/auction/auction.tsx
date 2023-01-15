@@ -17,30 +17,21 @@ const Auction = () => {
       </div>
       <div className={css.auctionImages}>
         <div className={css.imgItem}>
-          <Image
-            src="/sunshine.png"
-            alt="sunshine image"
-            width={485}
-            height={396}
-          />
+          <div className={css.slideImgContainer}>
+            <Image src="/sunshine.png" alt="sunshine image" fill />
+          </div>
           <div className={css.imgTime}>6hrs : 40mins: 5s</div>
         </div>
         <div className={css.imgItem}>
-          <Image
-            src="/lantern.png"
-            alt="lantern image"
-            width={485}
-            height={396}
-          />
+          <div className={css.slideImgContainer}>
+            <Image src="/lantern.png" alt="lantern image" fill />
+          </div>
           <div className={css.imgTime}>6hrs : 40mins: 5s</div>
         </div>
         <div className={css.imgItem}>
-          <Image
-            src="/cloths.png"
-            alt="cloths image"
-            width={485}
-            height={396}
-          />
+          <div className={css.slideImgContainer}>
+            <Image src="/cloths.png" alt="cloths image" fill />
+          </div>
           <div className={css.imgTime}>6hrs : 40mins: 5s</div>
         </div>
       </div>
@@ -59,12 +50,9 @@ const Auction = () => {
                 />
               </div>
             </div>
-            <Image
-              src="/light_box.png"
-              alt="light and bulbs"
-              width={500}
-              height={210}
-            />
+            <div className={css.auctionImgHouse}>
+              <Image src="/light_box.png" alt="light and bulbs" fill />
+            </div>
             <div className={css.subText}>Out of the box</div>
           </div>
           <div className={css.details}>
@@ -87,7 +75,6 @@ const Auction = () => {
           </div>
         </div>
 
-        {/* <div className={css.topBidGrid}> */}
         <div>
           <div className={css.imgContainer}>
             <div className={css.loveContainer}>
@@ -100,12 +87,9 @@ const Auction = () => {
                 />
               </div>
             </div>
-            <Image
-              src="/chair.png"
-              alt="light and bulbs"
-              width={500}
-              height={210}
-            />
+            <div className={css.auctionImgHouse}>
+              <Image src="/chair.png" alt="light and bulbs" fill />
+            </div>
             <div className={css.subText}>Falling apart</div>
           </div>
           <div className={css.details}>

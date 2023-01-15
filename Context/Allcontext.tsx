@@ -25,7 +25,7 @@ const barContextDefaultValues: barContextType = {
     { name: 'osuji chiaka', comment: '$140,000 instant bid', img: '' },
     { name: 'Ella Flynn', comment: 'Tight bid', img: '' },
     { name: 'Uncle Luca', comment: 'instant bid', img: '' },
-    { name: 'Opeyemi Tiwalope', comment: '$45.00', img: '' },
+    { name: 'Ope Tiwalope', comment: '$45.00', img: '' },
     {
       name: 'Celestina Quinn',
       comment: 'gm friends! ready to bidddd',
@@ -50,10 +50,10 @@ type Props = {
 export const State = ({ children }: Props) => {
   const [bar, setBar] = useState<boolean>(false);
   const [bidComments, setBidComments] = useState<Comment[]>([
-    { name: 'osuji chiaka', comment: '$140,000 instant bid', img: '/bid1.png' },
+    { name: 'osuji chiaka', comment: 'instant bid', img: '/bid1.png' },
     { name: 'Ella Flynn', comment: 'Tight bid', img: '/bid2.png' },
     { name: 'Uncle Luca', comment: 'instant bid', img: '/bid3.png' },
-    { name: 'Opeyemi Tiwalope', comment: '$45.00', img: '/bid4.png' },
+    { name: 'Ope Tiwalope', comment: '$45.00', img: '/bid4.png' },
     {
       name: 'Celestina Quinn',
       comment: 'gm friends! ready to bidddd',
