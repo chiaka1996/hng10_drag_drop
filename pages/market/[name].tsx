@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const Product = () => {
   return (
-    <div style={{ backgroundColor: 'rgb(252, 252, 252)' }}>
+    <div>
       <NavBar page="market" />
       <Sidebar />
       <div className={css.itemContainer}>
@@ -16,26 +16,20 @@ const Product = () => {
         </div>
 
         <div className={css.itemBreakdown}>
-          <Image
-            src="/Rectangle300.png"
-            className={css.descriptionImg}
-            width={500}
-            height={800}
-            alt="item"
-          />
+          <div className={css.rectangleImgContainer}>
+            <Image
+              src="/Rectangle300.png"
+              className={css.descriptionImg}
+              fill
+              alt="item"
+            />
+          </div>
 
           <div className={css.itemDescription}>
             <div className={css.itemHeader}>
               <div className={css.headerName}>Boolean Egyptian</div>
               <div className={css.headerPrice}>
-                <Image
-                  src="/etheurum.png"
-                  alt="etheurum"
-                  width={33}
-                  height={40}
-                  className={css.eth}
-                />
-                <span>0.09</span>
+                <span>$0.09</span>
               </div>
             </div>
             <div className={css.creatorDiv}>
@@ -65,15 +59,21 @@ const Product = () => {
             </div>
             <div className={css.subs}>
               <span>Description</span>
-              <Image src="/down_arrow.png" width={25} height={14} alt="arrow" />
+              <div className={css.downArrow}>
+                <Image src="/down_arrow.png" fill alt="arrow" />
+              </div>
             </div>
             <div className={css.listings}>
               <span>Listings</span>
-              <Image src="/down_arrow.png" width={25} height={14} alt="arrow" />
+              <div className={css.downArrow}>
+                <Image src="/down_arrow.png" fill alt="arrow" />
+              </div>
             </div>
             <div className={css.stat}>
               <span>Status</span>
-              <Image src="/down_arrow.png" width={25} height={14} alt="arrow" />
+              <div className={css.downArrow}>
+                <Image src="/down_arrow.png" fill alt="arrow" />
+              </div>
             </div>
           </div>
         </div>
