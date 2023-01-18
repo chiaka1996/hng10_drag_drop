@@ -9,15 +9,13 @@ interface prop {
 const Product = ({ img, name, price }: prop) => {
   return (
     <div className={css.products}>
-      <Image
-        src={img}
-        alt="product"
-        width={240}
-        height={280}
-        className={css.productImg}
-      />
-      <div className={css.name}>{name}</div>
-      <div className={css.price}>{price}</div>
+      <div className={css.imgContainer}>
+        <Image src={img} alt="product" fill className={css.productImg} />
+      </div>
+      <div className={css.mobileFlex}>
+        <div className={css.name}>{name}</div>
+        <div className={css.price}>{price}</div>
+      </div>
     </div>
   );
 };

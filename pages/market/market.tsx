@@ -3,12 +3,16 @@ import Sidebar from '../../Components/SideBar/SideBar';
 import css from '../../styles/market.module.css';
 import Image from 'next/image';
 import Product from '../../Components/Market/Products';
+import Footer from '../../Components/Footer/Footer';
 
 const Market = () => {
   return (
-    <div style={{ backgroundColor: 'rgb(252, 252, 252)' }}>
+    <div className={css.marketBody}>
       <NavBar page="market" />
       <Sidebar />
+      <div className={css.productLinkMarket}>
+        Home/ Marketplace/ <span style={{ color: 'black' }}>Editorials</span>
+      </div>
 
       <div className={css.searchContainer}>
         <div className={css.filtersContainer}>
@@ -123,6 +127,32 @@ const Market = () => {
             </button>
           </div>
 
+          <div className={css.resultMobile}>
+            <div className={css.seeResult}>Showing 1-5 of 18 results</div>
+            <div className={css.resultFlex}>
+              <div className={css.textContainer}>
+                <span>Filters</span>
+                <Image
+                  src="/down_arrow.png"
+                  alt="down arrow"
+                  width={12}
+                  height={9}
+                  className={css.mobileArrow}
+                />
+              </div>
+              <div className={css.textContainer}>
+                <span>Sort by</span>
+                <Image
+                  src="/down_arrow.png"
+                  alt="down arrow"
+                  width={12}
+                  height={9}
+                  className={css.mobileArrow}
+                />
+              </div>
+            </div>
+          </div>
+
           <div className={css.prods}>
             <Product img="/Rectangle1.png" name="PHILOMENA ‘22" price="$3.90" />
             <Product
@@ -143,6 +173,7 @@ const Market = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

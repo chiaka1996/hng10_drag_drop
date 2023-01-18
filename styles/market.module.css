@@ -1,8 +1,27 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+
+.marketBody{
+    background-color: rgb(252, 252, 252);
+}
+
+.productLinkMarket{
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 500;
+    padding: 2% 0 0 10%;
+    font-size: 24px;
+    color: #BCB7B7;
+}
+
 .searchContainer{
     padding: 5% 10% 0 10%;
     display: grid;
     grid-template-columns: 20% 75%;
     justify-content: space-between;
+}
+
+.filtersContainer{
+    display: block;
 }
 
 .search{
@@ -30,6 +49,10 @@
     top: 25%;
     left: 10%;
     position: absolute;
+}
+
+.resultMobile{
+    display: none;
 }
 
 .results{
@@ -481,6 +504,75 @@
 
      /* //////////////////////////mobile design//////////////////// */
     @media only screen and (max-width: 1000px) {
+
+        /*/////////////css for market page///////////////////*/
+        .marketBody{
+            background-color: white;
+        }
+
+        .productLinkMarket{
+             font-weight: 500;
+            padding: 2% 0 5% 2%;
+            font-size: 20px;
+        }
+        .searchContainer{
+            display: block;
+            padding: 5% 2% 0 2%;
+        }
+
+        .filtersContainer{
+            display: none;
+        }
+
+        .prods{
+            display: block;
+        }
+
+        .results{
+            display: none;
+        }
+
+        .resultMobile{
+            display: block;
+        }
+
+        .seeResult{
+            font-family: 'Poppins';
+            font-style: italic;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
+            color: #BCB7B7;
+            padding: 0 0 3% 0;
+        }
+
+        .resultFlex{
+            width: 90%;
+            height: 60px;
+            background: #FFFFFF;
+            box-shadow: 4px 4px 64px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .textContainer{
+            display: flex;
+            flex-direction: row;
+            width: 28%;
+            font-family: 'Satoshi';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+        }
+
+        .mobileArrow{
+            transform: translateY(100%);
+            margin: 0 0 0 10%;
+        }
 
         /*/////////////////////// CSS FOR SINGLE PRODUCT PAGE [name].tsx  */
         .itemContainer{
