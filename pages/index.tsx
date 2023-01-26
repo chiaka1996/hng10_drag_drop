@@ -54,12 +54,27 @@ export default function Home() {
         images and captures seamlessly in one place. Register to get top access.
       </div>
 
+      <div className={style.slideContainer}>
+        <div className={style.slideImg1}>
+          <Image src="/glassboy.png" alt="alt boy" fill />
+        </div>
+        <div className={style.slideImg2}>
+          <Image src="/leaf.png" alt="leaf" fill />
+        </div>
+        <div className={style.slideImg3}>
+          <Image src="/girl.png" alt="girl" fill />
+        </div>
+        <div className={style.slideImg4}>
+          <Image src="/kangaroo.png" alt="kangaroo" fill />
+        </div>
+      </div>
+
       <div className={style.featuredProductHeader}>Featured products</div>
       <div className={style.productContainer}>
         <div className={style.productImage}>
-          <Image src="/lady.png" alt="lady in black" width={610} height={305} />
+          <Image src="/lady.png" alt="lady in black" fill />
         </div>
-        <div className={style.egyptContainer} style={{ padding: '0 0 0 3%' }}>
+        <div className={style.egyptContainer}>
           <header className={style.egyptianHeader}>The Boolean Egyptian</header>
           <div className={style.loremImsum}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
@@ -68,41 +83,22 @@ export default function Home() {
           </div>
 
           <div className={style.creators}>
-            <div style={{ width: '32%' }}>
-              <Image
-                src="/Ellipse1.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-              />
-              <Image
-                src="/Ellipse2.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse5.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse3.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse4.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
+            <div className={style.creatorImgContainer}>
+              <div className={style.creatorPic1}>
+                <Image src="/Ellipse1.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse2.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse5.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse3.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse4.png" alt="profilepic" fill />
+              </div>
             </div>
             <div className={style.major}>64 major creators</div>
             <div className={style.imgContainer}>
@@ -118,7 +114,10 @@ export default function Home() {
         </div>
       </div>
       <div className={style.productContainer}>
-        <div className={style.egyptContainer} style={{ padding: '0 3% 0 0' }}>
+        <div className={style.productImageMobile}>
+          <Image src="/mummies.png" alt="lady in black" fill />
+        </div>
+        <div className={style.egyptContainer}>
           <header className={style.egyptianHeader}>The Boolean Egyptian</header>
           <div className={style.loremImsum}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
@@ -127,41 +126,22 @@ export default function Home() {
           </div>
 
           <div className={style.creators}>
-            <div style={{ width: '32%' }}>
-              <Image
-                src="/Ellipse1.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-              />
-              <Image
-                src="/Ellipse2.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse5.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse3.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse4.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
+            <div className={style.creatorImgContainer}>
+              <div className={style.creatorPic1}>
+                <Image src="/Ellipse1.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse2.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse5.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse3.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse4.png" alt="profilepic" fill />
+              </div>
             </div>
             <div className={style.major}>64 major creators</div>
             <div className={style.imgContainer}>
@@ -175,18 +155,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className={style.productImage}>
-          <Image
-            src="/mummies.png"
-            alt="lady in black"
-            width={610}
-            height={305}
-          />
+        <div className={style.productImageRight}>
+          <Image src="/mummies.png" alt="lady in black" fill />
         </div>
       </div>
       <div className={style.productContainer}>
         <div className={style.productImage}>
-          <Image src="/pyramid.png" alt="pyramid" width={610} height={305} />
+          <Image src="/pyramid.png" alt="pyramid" fill />
         </div>
         <div className={style.egyptContainer} style={{ padding: '0 0 0 3%' }}>
           <header className={style.egyptianHeader}>The Boolean Egyptian</header>
@@ -197,41 +172,22 @@ export default function Home() {
           </div>
 
           <div className={style.creators}>
-            <div style={{ width: '32%' }}>
-              <Image
-                src="/Ellipse1.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-              />
-              <Image
-                src="/Ellipse2.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse5.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse3.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
-              <Image
-                src="/Ellipse4.png"
-                alt="profilepic"
-                width={51}
-                height={51}
-                className={style.creatorImg}
-              />
+            <div className={style.creatorImgContainer}>
+              <div className={style.creatorPic1}>
+                <Image src="/Ellipse1.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse2.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse5.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse3.png" alt="profilepic" fill />
+              </div>
+              <div className={style.creatorPic}>
+                <Image src="/Ellipse4.png" alt="profilepic" fill />
+              </div>
             </div>
             <div className={style.major}>64 major creators</div>
             <div className={style.imgContainer}>
@@ -290,24 +246,26 @@ export default function Home() {
       <div className={style.explore_auctions}>
         <div className={style.explore}>
           <span>Explore marketplace</span>
-          <Image
-            src="/blueArrow.png"
-            alt="blue Arrow"
-            width={70}
-            height={60}
-            className="animate__animated animate__pulse animate__infinite"
-          />
+          <div className={style.blueArrow}>
+            <Image
+              src="/blueArrow.png"
+              alt="blue Arrow"
+              fill
+              className="animate__animated animate__pulse animate__infinite"
+            />
+          </div>
         </div>
 
         <div className={style.explore}>
           <span>See auctions</span>
-          <Image
-            src="/blueArrow.png"
-            alt="blue Arrow"
-            width={70}
-            height={60}
-            className="animate__animated animate__pulse animate__infinite"
-          />
+          <div className={style.blueArrow}>
+            <Image
+              src="/blueArrow.png"
+              alt="blue Arrow"
+              fill
+              className="animate__animated animate__pulse animate__infinite"
+            />
+          </div>
         </div>
       </div>
       <div className={style.creatorContainer}>
@@ -335,43 +293,19 @@ export default function Home() {
         </div>
         <div className={style.date}>1985</div>
 
-        <Image
-          src={images[0]}
-          alt="circa people"
-          width={826}
-          height={835}
-          className={imgCount === 0 ? style.circaImg : style.imgTrans}
-        />
+        <div className={imgCount === 0 ? style.circaImg : style.imgTrans}>
+          <Image src={images[0]} alt="circa people" fill />
+        </div>
 
-        <Image
-          src={images[1]}
-          alt="circa people"
-          width={826}
-          height={835}
-          className={imgCount === 1 ? style.circaImg : style.imgTrans}
-        />
+        <div className={imgCount === 1 ? style.circaImg : style.imgTrans}>
+          <Image src={images[1]} alt="circa people" fill />
+        </div>
 
-        <Image
-          src={images[2]}
-          alt="circa people"
-          width={826}
-          height={835}
-          className={imgCount === 2 ? style.circaImg : style.imgTrans}
-        />
-      </div>
-
-      <div className={style.newsletter}>
-        <div>
-          <div className={style.letterHeader}>NEWSLETTER</div>
-          <div className={style.subscribe}>
-            Subscribe to get daily updates on new drops & exciting deals
-          </div>
-          <div className={style.formContainer}>
-            <input type="text" placeholder="ENTER YOUR EMAIL" />
-            <button>SUBSCRIBE</button>
-          </div>
+        <div className={imgCount === 2 ? style.circaImg : style.imgTrans}>
+          <Image src={images[2]} alt="circa people" fill />
         </div>
       </div>
+
       <Footer />
     </div>
   );
