@@ -104,7 +104,6 @@
     padding: 3% 0;
     margin: 0 auto;
     width: 80%;
-
     border-top: 0.1px solid #333333;
 }
 
@@ -115,13 +114,48 @@
     display: block;
     background-color: black;
 }
-.productImageMobile{
-    display: none;
+
+.opacityContainer{
+    opacity: 0;
 }
 
-.prodImg{
+.productImage:hover  .prodImg{
+    opacity: 0.5;
+}
+
+.productImage:hover .opacityContainer{
     opacity: 1;
 }
+
+.productImageRight:hover .prodImg{
+    opacity: 0.5;
+}
+
+.productImageRight:hover .opacityContainer{
+    opacity: 1;
+}
+
+.whiteArrowContainer{
+    width: 78px;
+    height: 78px;
+    border: 0.2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.whiteArrow{
+    width: 46px;
+    height: 26px;
+    position: relative;
+}
+
+
 
 .productImageText{
     position: absolute;
@@ -130,10 +164,19 @@
     font-family: 'Clash Display';
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 45px;
     line-height: 37px;
-    color: #FFFFFF;
+    color: white;
+    text-align: center;
     width: 100%;
+}
+
+.productImageMobile{
+    display: none;
+}
+
+.prodImg{
+    opacity: 1;
 }
 
 .egyptContainer{
@@ -649,7 +692,7 @@
         background-size: cover;
         opacity: 1;
         transition: ease 1000ms;
-}
+        }
 
 
         .featuredProductHeader{
@@ -665,6 +708,10 @@
 
         .productImage{
             width: 100%;
+        }
+
+        .opacityContainer{
+            opacity: 1;
         }
 
         .productImageRight{
@@ -685,29 +732,12 @@
             font-size: 32px;
             line-height: 37px;
             color: #FFFFFF;
+            opacity: 1;
             text-align: center;
             width: 100%;
         }
 
-        .whiteArrowContainer{
-            width: 78px;
-            height: 78px;
-            border: 0.2px solid white;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 15%;
-            right: 10%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .whiteArrow{
-            width: 46px;
-            height: 26px;
-            position: relative;
-        }
+        
 
         .creatorNote{
             width: 100%;
@@ -723,6 +753,7 @@
             position: relative;
             margin: 0 0 0 0;
             display: block;
+            background-color: black;
         }
 
         .egyptContainer{

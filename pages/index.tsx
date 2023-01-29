@@ -155,12 +155,14 @@ export default function Home() {
             fill
             className={style.prodImg}
           />
-          <div className={style.productImageText}>Boolean Egyptian</div>
-          <div
-            className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
-          >
-            <div className={style.whiteArrow}>
-              <Image src="/vector.png" alt="vector img" fill />
+          <div className={style.opacityContainer}>
+            <div className={style.productImageText}>Boolean Egyptian</div>
+            <div
+              className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+            >
+              <div className={style.whiteArrow}>
+                <Image src="/vector.png" alt="vector img" fill />
+              </div>
             </div>
           </div>
         </div>
@@ -205,10 +207,23 @@ export default function Home() {
       </div>
       <div className={style.productContainer}>
         <div className={style.productImageMobile}>
-          <Image src="/mummies.png" alt="lady in black" fill />
+          <Image
+            src="/mummies.png"
+            alt="lady in black"
+            fill
+            className={style.prodImg}
+          />
+          <div className={style.productImageText}>Are We There Yet?</div>
+          <div
+            className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+          >
+            <div className={style.whiteArrow}>
+              <Image src="/vector.png" alt="vector img" fill />
+            </div>
+          </div>
         </div>
         <div className={style.egyptContainer}>
-          <header className={style.egyptianHeader}>The Boolean Egyptian</header>
+          <header className={style.egyptianHeader}>Are We There Yet?</header>
           <div className={style.loremImsum}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
             purus sit amet luctus venenatis, lectus magna fringilla urna,
@@ -246,15 +261,45 @@ export default function Home() {
           </div>
         </div>
         <div className={style.productImageRight}>
-          <Image src="/mummies.png" alt="lady in black" fill />
+          <Image
+            src="/mummies.png"
+            alt="lady in black"
+            fill
+            className={style.prodImg}
+          />
+          <div className={style.opacityContainer}>
+            <div className={style.productImageText}>Are We There Yet?</div>
+            <div
+              className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+            >
+              <div className={style.whiteArrow}>
+                <Image src="/vector.png" alt="vector img" fill />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={style.productContainer}>
         <div className={style.productImage}>
-          <Image src="/pyramid.png" alt="pyramid" fill />
+          <Image
+            src="/pyramid.png"
+            alt="pyramid"
+            fill
+            className={style.prodImg}
+          />
+          <div className={style.opacityContainer}>
+            <div className={style.productImageText}>Pyramid 1997</div>
+            <div
+              className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+            >
+              <div className={style.whiteArrow}>
+                <Image src="/vector.png" alt="vector img" fill />
+              </div>
+            </div>
+          </div>
         </div>
         <div className={style.egyptContainer} style={{ padding: '0 0 0 3%' }}>
-          <header className={style.egyptianHeader}>The Boolean Egyptian</header>
+          <header className={style.egyptianHeader}>Pyramid 1997</header>
           <div className={style.loremImsum}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
             purus sit amet luctus venenatis, lectus magna fringilla urna,
