@@ -9,7 +9,7 @@ const Market = () => {
   return (
     <div className={css.marketBody}>
       <NavBar page="market" />
-      <Sidebar />
+      <Sidebar page="market" />
       <div className={css.productLinkMarket}>
         Home/ Marketplace/ <span style={{ color: 'black' }}>Editorials</span>
       </div>

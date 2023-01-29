@@ -7,7 +7,7 @@ const Success = () => {
   return (
     <main className={style.successContainer}>
       <NavBar page="" />
-      <Sidebar />
+      <Sidebar page="" />
 
       <Image
         src="/sucess_ellipse1.png"

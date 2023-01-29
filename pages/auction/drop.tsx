@@ -7,7 +7,7 @@ const Drop = () => {
   return (
     <main className={css.dropContainer}>
       <NavBar page="drop" />
-      <Sidebar />
+      <Sidebar page="drop" />
 
       <div className={css.navigate}>
         <span>Home/ </span>

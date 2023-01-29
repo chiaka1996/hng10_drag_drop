@@ -11,7 +11,7 @@ const LiveBid = () => {
     <main>
       <div className={css.auctContainerLive}>
         <NavBar page="auction" />
-        <Sidebar />
+        <Sidebar page="auction" />
 
         <div className={css.navigate}>
           <span>Home/ </span>

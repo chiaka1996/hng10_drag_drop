@@ -8,7 +8,7 @@ const Payment = () => {
   return (
     <main>
       <NavBar page="market" />
-      <Sidebar />
+      <Sidebar page="market" />
 
       <div className={cs.cartNav}>
         <div className={cs.cart}>

@@ -8,7 +8,7 @@ const Product = () => {
   return (
     <div>
       <NavBar page="market" />
-      <Sidebar />
+      <Sidebar page="market" />
       <div className={css.itemContainer}>
         <div className={css.productLink}>
           Home/ Marketplace/ Editorials/{' '}

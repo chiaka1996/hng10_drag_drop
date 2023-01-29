@@ -7,7 +7,7 @@ const Auction = () => {
   return (
     <div className={css.auctContainer}>
       <NavBar page="auction" />
-      <Sidebar />
+      <Sidebar page="auction" />
 
       <div className={css.navigate}>
         <span>Home/ </span>Auctions

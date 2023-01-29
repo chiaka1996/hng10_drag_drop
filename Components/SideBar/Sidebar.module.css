@@ -1,70 +1,98 @@
 .sideContainer{
-   padding: 5% 5% 0 5%;
-   z-index: 10;
-   position: fixed;
-   top: 0;
-   left: 0;
-   opacity: 1;
-   background-color: white;
-   width: 100%;
-   height: 100vh;
-   transition: left 1s;
-}
-
-.sideContainer_false{
     padding: 5% 5% 0 5%;
     z-index: 10;
     position: fixed;
     top: 0;
-    left: 100%;
+    left: 0;
     opacity: 1;
     background-color: white;
-    width: 100%;
+    width: 90%;
     height: 100vh;
     transition: left 1s;
-    
-}
+ }
+ 
+ .sideContainer_false{
+     padding: 5% 5% 0 5%;
+     z-index: 10;
+     position: fixed;
+     top: 0;
+     left: 100%;
+     opacity: 1;
+     background-color: white;
+     width: 100%;
+     height: 100vh;
+     transition: left 1s;
+     
+ }
+ 
+ .navLogo{
+     font-family: 'STIX Two Text';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 24px;
+     line-height: 52px;
+     color: #292929;
+ }
+ 
+ .logoContainer{
+     display: flex;
+     justify-content: space-between;
+ }
+ 
+ .cancelContainer{
+     padding: 3% 0 0 0;
+ }
+ 
+ .linkContainer{
+     margin: 10% 0 0 0;
+ }
+ 
+ .navLinks{
+     font-family: 'Satoshi';
+     font-style: normal;
+     font-weight: 500;
+     font-size: 24px;
+     line-height: 51px;
+     color: #333333;
+ }
+ 
+ .msgContainer{
+     margin: 10% 0 0 0;
+     background-color: #3341C1;
+     width: 64px;
+     height: 64px;
+     border-radius: 50%;
+     position: absolute;
+     bottom: 5%;
+     right: 5%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+ }
 
-.navLogo{
-    font-family: 'STIX Two Text';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 52px;
-    color: #292929;
-}
-
-.logoContainer{
-    display: flex;
-    justify-content: space-between;
-}
-
-.cancelContainer{
-    padding: 3% 0 0 0;
-}
-
-.linkContainer{
-    margin: 10% 0 0 0;
-}
-
-.navLinks{
+ .navLinksUnderline{
     font-family: 'Satoshi';
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 51px;
     color: #333333;
+    padding: 0 0 0 0;
+    /* height: 30px; */
+    /* margin: 5% 0 0 0; */
+    position: relative;
+    cursor: pointer;
+    display: inline;
 }
 
-.msgContainer{
-    margin: 10% 0 0 0;
-    background-color: #3341C1;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    text-align: center;
-    padding: 5% 0;
+.navLinksUnderline::after{
+    content: '';
     position: absolute;
-    bottom: 5%;
-    right: 5%;
+    width: 100%;
+    height: 1px;
+    background-color: #292929;
+    bottom: 0;
+    left: 0;
 }

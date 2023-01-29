@@ -10,7 +10,12 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const images = ['/image1.png', '/image2.png', '/image3.png'];
+  const slide1 = ['/glassboy.png', '/leaf.png', '/girl.png', '/kangaroo.png'];
+  const slide2 = ['/leaf.png', '/girl.png', '/kangaroo.png', '/glassboy.png'];
+  const slide3 = ['/girl.png', '/kangaroo.png', '/glassboy.png', '/leaf.png'];
+  const slide4 = ['/kangaroo.png', '/glassboy.png', '/leaf.png', '/girl.png'];
   const [imgCount, setImgCount] = useState(0);
+  const [slideOne, setSlideOne] = useState(0);
 
   const changeImg = () => {
     if (imgCount === 2) {
@@ -20,13 +25,30 @@ export default function Home() {
     }
   };
 
+  const changeSlideOne = () => {
+    setSlideOne(prevIndex =>
+      prevIndex === slide1.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  useEffect(() => {
+    setTimeout(() => changeSlideOne(), 4000);
+  }, [slideOne]);
+
+  useEffect(() => {
+    const slide1TimeOut = setTimeout(() => changeImg(), 4000);
+    return () => clearTimeout(slide1TimeOut);
+  });
+
   useEffect(() => {
     setTimeout(() => changeImg(), 4000);
   }, [imgCount]);
 
   useEffect(() => {
-    const timeOut = setTimeout(() => changeImg(), 3000);
-    return () => clearTimeout(timeOut);
+    const timeOut = setTimeout(() => changeImg(), 4000);
+    return () => {
+      clearTimeout(timeOut);
+    };
   }, []);
 
   return (
@@ -45,7 +67,7 @@ export default function Home() {
         ></link>
       </Head>
       <NavBar page="home" />
-      <Sidebar />
+      <Sidebar page="home" />
       <div className={style.topHeader}>
         Photography is poetry & beautiful untold stories
       </div>
@@ -56,23 +78,91 @@ export default function Home() {
 
       <div className={style.slideContainer}>
         <div className={style.slideImg1}>
-          <Image src="/glassboy.png" alt="alt boy" fill />
+          {slide1.map((img, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundImage: `url(${img})`,
+                transform: `translate3d(${-slideOne * 100}%, 0, 0)`
+              }}
+              className={style.displayImg}
+            ></div>
+          ))}
         </div>
-        <div className={style.slideImg2}>
-          <Image src="/leaf.png" alt="leaf" fill />
+
+        <div className={style.slideImg1}>
+          {slide2.map((img, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundImage: `url(${img})`,
+                transform: `translate3d(${-slideOne * 100}%, 0, 0)`
+              }}
+              className={style.displayImg}
+            ></div>
+          ))}
         </div>
-        <div className={style.slideImg3}>
-          <Image src="/girl.png" alt="girl" fill />
+
+        <div className={style.slideImg1}>
+          {slide3.map((img, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundImage: `url(${img})`,
+                transform: `translate3d(${-slideOne * 100}%, 0, 0)`
+              }}
+              className={style.displayImg}
+            ></div>
+          ))}
         </div>
-        <div className={style.slideImg4}>
-          <Image src="/kangaroo.png" alt="kangaroo" fill />
+
+        <div className={style.slideImg1}>
+          {slide4.map((img, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundImage: `url(${img})`,
+                transform: `translate3d(${-slideOne * 100}%, 0, 0)`
+              }}
+              className={style.displayImg}
+            ></div>
+          ))}
+        </div>
+      </div>
+
+      {/* carousel for mobile */}
+      <div className={style.slideContainerMobile}>
+        <div className={style.slideImg1}>
+          {slide1.map((img, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundImage: `url(${img})`,
+                transform: `translate3d(${-slideOne * 100}%, 0, 0)`
+              }}
+              className={style.displayImg}
+            ></div>
+          ))}
         </div>
       </div>
 
       <div className={style.featuredProductHeader}>Featured products</div>
       <div className={style.productContainer}>
         <div className={style.productImage}>
-          <Image src="/lady.png" alt="lady in black" fill />
+          <Image
+            src="/lady.png"
+            alt="lady in black"
+            fill
+            className={style.prodImg}
+          />
+          <div className={style.productImageText}>Boolean Egyptian</div>
+          <div
+            className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+          >
+            <div className={style.whiteArrow}>
+              <Image src="/vector.png" alt="vector img" fill />
+            </div>
+          </div>
         </div>
         <div className={style.egyptContainer}>
           <header className={style.egyptianHeader}>The Boolean Egyptian</header>

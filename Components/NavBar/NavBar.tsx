@@ -7,6 +7,7 @@ import { BarState } from '../../Context/Allcontext';
 interface prop {
   page: string;
 }
+
 const NavBar = ({ page }: prop) => {
   const { bar, openBar } = BarState();
   return (
