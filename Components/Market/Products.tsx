@@ -2,11 +2,12 @@ import css from './Products.module.css';
 import Image from 'next/image';
 
 interface prop {
+  id: number;
   img: string;
   name: string;
-  price: string;
+  price: number;
 }
-const Product = ({ img, name, price }: prop) => {
+const Product = ({ img, name, price, id }: prop) => {
   return (
     <div className={css.products}>
       <div className={css.imgContainer}>
@@ -14,7 +15,7 @@ const Product = ({ img, name, price }: prop) => {
       </div>
       <div className={css.mobileFlex}>
         <div className={css.name}>{name}</div>
-        <div className={css.price}>{price}</div>
+        <div className={css.price}>${price}</div>
       </div>
     </div>
   );

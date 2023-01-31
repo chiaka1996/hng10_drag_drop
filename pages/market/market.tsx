@@ -4,8 +4,11 @@ import css from '../../styles/market.module.css';
 import Image from 'next/image';
 import Product from '../../Components/Market/Products';
 import Footer from '../../Components/Footer/Footer';
+import { BarState } from '../../Context/Allcontext';
+import Link from 'next/link';
 
 const Market = () => {
+  const { products } = BarState();
   return (
     <div className={css.marketBody}>
       <NavBar page="market" />
@@ -154,19 +157,20 @@ const Market = () => {
           </div>
 
           <div className={css.prods}>
-            <Product img="/Rectangle1.png" name="PHILOMENA ‘22" price="$3.90" />
-            <Product
-              img="/Rectangle2.png"
-              name="BOOLEAN EGYPTIAN"
-              price="$3.90"
-            />
-            <Product img="/Rectangle3.png" name="BLANC" price="$3.90" />
-            <Product img="/Rectangle4.png" name="ELLIPSIA" price="$3.90" />
-            <Product img="/Rectangle5.png" name="THE LAWMAKERS" price="$3.90" />
-            <Product img="/Rectangle6.png" name="VEIL" price="$3.90" />
-            <Product img="/Rectangle7.png" name="ALTERNATING" price="$3.90" />
-            <Product img="/Rectangle8.png" name="ROSEMARY ‘22" price="$3.90" />
-            <Product img="/Rectangle9.png" name="BEVERLY" price="$3.90" />
+            {products.map((prod, i) => (
+              <Link
+                href={`/market/${prod.id}`}
+                key={i}
+                style={{ textDecoration: 'none' }}
+              >
+                <Product
+                  img={prod.image}
+                  name={prod.name}
+                  price={prod.price}
+                  id={prod.id}
+                />
+              </Link>
+            ))}
           </div>
           <div className={css.btnContainer}>
             <button>See more</button>

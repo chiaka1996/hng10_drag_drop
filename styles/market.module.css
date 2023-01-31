@@ -224,7 +224,7 @@
     .itemBreakdown{
         border: 1px solid #333333;
         margin: 5% 0 0 0;
-        height: 890px;
+        height: 100%;
         width: 100%;
         display: grid;
         grid-template-columns: 50% 50%;
@@ -259,7 +259,7 @@
     }
 
     .headerPrice{
-        font-size: 40px;
+        font-size: 36px;
         line-height: 157.6%;
     }
 
@@ -303,6 +303,7 @@
 
     .count span{
         padding: 0 5%;
+        cursor: pointer;
     }
 
     .addToCart{
@@ -328,6 +329,7 @@
         text-align: center;
         padding: 0 auto;
         justify-content: center;
+        cursor: pointer;
     }
 
     .addToCart button span{
@@ -346,6 +348,28 @@
         margin-left: 5%;
     }
 
+    .descriptionHouse{
+        border-bottom: none;
+        border-top: 1px solid #333333;
+        padding: 6% 5%;
+    }
+
+    .descriptionHouse:first-child{
+        border-top: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        padding: 6% 5%;
+        
+    }
+
+    .explanation{
+        margin: 5% 0 0 0;
+        display: block;
+    }
+
+    .hideExplanation{
+        display: none;
+    }
+
     .subs, .listings, .stat{
         font-weight: 500;
         font-size: 32px;
@@ -355,9 +379,6 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        border-top: 1px solid #333333;
-        border-bottom: 1px solid #333333;
-        padding: 6% 5%;
      }
 
      .listings{
@@ -370,9 +391,19 @@
      }
 
      .downArrow{
-        width: 25px;
-        height: 14px;
+        width: 23px;
+        height: 23px;
         position: relative;
+        transform: rotate(360deg);
+        cursor: pointer;
+     }
+
+     .upArrow{
+        transform: rotate(180deg);
+        width: 23px;
+        height: 23px;
+        position: relative;
+        cursor: pointer;
      }
 
      .exploreCollection{
@@ -605,6 +636,9 @@
         .itemHeader{
             padding: 6% 0 0 0;
             border: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         .headerName{
@@ -612,7 +646,9 @@
         }
 
         .headerPrice{
-            font-size: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            transform: translateY(-12%);
         }
 
         .creatorDiv{

@@ -2,6 +2,11 @@
     position: relative;
     width: 240px;
     height: 280px;
+    cursor: pointer;
+}
+
+.productImg{
+    border-radius: 2%;
 }
 
 .products{
@@ -23,6 +28,7 @@
     line-height: 157.6%;
     color: #333333;
     margin: 0 0 0 0;
+    text-transform: uppercase;
 }
 
 .price{ 
