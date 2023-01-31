@@ -1,4 +1,4 @@
-import nav from './SideBar.module.css';
+import nav from '.././SideBar.module.css';
 import Image from 'next/image';
 import { BarState } from '../../Context/Allcontext';
 import 'animate.css';
