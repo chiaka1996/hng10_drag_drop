@@ -11,7 +11,6 @@ import Link from 'next/link';
 const Product = () => {
   const { products } = BarState();
   const router = useRouter();
-  // const num = router.query.name;
   const [item, setItem] = useState({
     id: 0,
     name: '',
@@ -58,7 +57,7 @@ const Product = () => {
     if (!router.isReady) return;
     setNum(router.query.name);
     products.map((prod, i) =>
-      prod.id.toString() == num
+      prod.id.toString() == router.query.name
         ? setItem({
             id: prod.id,
             name: prod.name,
@@ -70,7 +69,7 @@ const Product = () => {
           })
         : ''
     );
-  }, [router.isReady, num]);
+  }, [router.isReady, router.query.name]);
 
   return (
     <div>
@@ -210,7 +209,10 @@ const Product = () => {
 
       <div className={css.exploreAll}>
         {/* <Link href={`/market/10`} style={{ textDecoration: 'none' }}> */}
-        <div onClick={() => setNum('10')} className={css.exploreImgContainer}>
+        <div
+          onClick={() => router.push('/market/10')}
+          className={css.exploreImgContainer}
+        >
           <div>
             <div className={css.thickContainer}>
               <Image
