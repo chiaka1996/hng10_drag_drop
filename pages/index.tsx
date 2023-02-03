@@ -7,6 +7,7 @@ import NavBar from '../Components/NavBar/NavBar';
 import Sidebar from '../Components/SideBar/SideBar';
 import Footer from '../Components/Footer/Footer';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const images = ['/image1.png', '/image2.png', '/image3.png'];
@@ -147,127 +148,78 @@ export default function Home() {
       </div>
 
       <div className={style.featuredProductHeader}>Featured products</div>
-      <div className={style.productContainer}>
-        <div className={style.productImage}>
-          <Image
-            src="/lady.png"
-            alt="lady in black"
-            fill
-            className={style.prodImg}
-          />
-          <div className={style.opacityContainer}>
-            <div className={style.productImageText}>Boolean Egyptian</div>
-            <div
-              className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
-            >
-              <div className={style.whiteArrow}>
-                <Image src="/vector.png" alt="vector img" fill />
+      <Link href={`/market/2`} style={{ textDecoration: 'none' }}>
+        <div className={style.productContainer}>
+          <div className={style.productImage}>
+            <Image
+              src="/lady.png"
+              alt="lady in black"
+              fill
+              className={style.prodImg}
+            />
+            <div className={style.opacityContainer}>
+              <div className={style.productImageText}>Boolean Egyptian</div>
+              <div
+                className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+              >
+                <div className={style.whiteArrow}>
+                  <Image src="/vector.png" alt="vector img" fill />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className={style.egyptContainer}>
-          <header className={style.egyptianHeader}>The Boolean Egyptian</header>
-          <div className={style.loremImsum}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor pur
-          </div>
+          <div className={style.egyptContainer}>
+            <header className={style.egyptianHeader}>
+              The Boolean Egyptian
+            </header>
+            <div className={style.loremImsum}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+              aliquam, purus sit amet luctus venenatis, lectus magna fringilla
+              urna, porttitor rhoncus dolor pur
+            </div>
 
-          <div className={style.creators}>
-            <div className={style.creatorImgContainer}>
-              <div className={style.creatorPic1}>
-                <Image src="/Ellipse1.png" alt="profilepic" fill />
+            <div className={style.creators}>
+              <div className={style.creatorImgContainer}>
+                <div className={style.creatorPic1}>
+                  <Image src="/Ellipse1.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse2.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse5.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse3.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse4.png" alt="profilepic" fill />
+                </div>
               </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse2.png" alt="profilepic" fill />
+              <div className={style.major}>64 major creators</div>
+              <div className={style.imgContainer}>
+                <Image
+                  src="/arrow.png"
+                  alt="profilepic"
+                  className={style.arrow}
+                  width={30}
+                  height={18}
+                />
               </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse5.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse3.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse4.png" alt="profilepic" fill />
-              </div>
-            </div>
-            <div className={style.major}>64 major creators</div>
-            <div className={style.imgContainer}>
-              <Image
-                src="/arrow.png"
-                alt="profilepic"
-                className={style.arrow}
-                width={30}
-                height={18}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={style.productContainer}>
-        <div className={style.productImageMobile}>
-          <Image
-            src="/mummies.png"
-            alt="lady in black"
-            fill
-            className={style.prodImg}
-          />
-          <div className={style.productImageText}>Are We There Yet?</div>
-          <div
-            className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
-          >
-            <div className={style.whiteArrow}>
-              <Image src="/vector.png" alt="vector img" fill />
             </div>
           </div>
         </div>
-        <div className={style.egyptContainer}>
-          <header className={style.egyptianHeader}>Are We There Yet?</header>
-          <div className={style.loremImsum}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor pur
-          </div>
+      </Link>
 
-          <div className={style.creators}>
-            <div className={style.creatorImgContainer}>
-              <div className={style.creatorPic1}>
-                <Image src="/Ellipse1.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse2.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse5.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse3.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse4.png" alt="profilepic" fill />
-              </div>
-            </div>
-            <div className={style.major}>64 major creators</div>
-            <div className={style.imgContainer}>
-              <Image
-                src="/arrow.png"
-                alt="profilepic"
-                className={style.arrow}
-                width={30}
-                height={18}
-              />
-            </div>
-          </div>
-        </div>
-        <div className={style.productImageRight}>
-          <Image
-            src="/mummies.png"
-            alt="lady in black"
-            fill
-            className={style.prodImg}
-          />
-          <div className={style.opacityContainer}>
+      <Link href={`/market/13`} style={{ textDecoration: 'none' }}>
+        <div className={style.productContainer}>
+          <div className={style.productImageMobile}>
+            <Image
+              src="/mummies.png"
+              alt="lady in black"
+              fill
+              className={style.prodImg}
+            />
             <div className={style.productImageText}>Are We There Yet?</div>
             <div
               className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
@@ -277,66 +229,126 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className={style.productContainer}>
-        <div className={style.productImage}>
-          <Image
-            src="/pyramid.png"
-            alt="pyramid"
-            fill
-            className={style.prodImg}
-          />
-          <div className={style.opacityContainer}>
-            <div className={style.productImageText}>Pyramid 1997</div>
-            <div
-              className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
-            >
-              <div className={style.whiteArrow}>
-                <Image src="/vector.png" alt="vector img" fill />
-              </div>
+          <div className={style.egyptContainer}>
+            <header className={style.egyptianHeader}>Are We There Yet?</header>
+            <div className={style.loremImsum}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+              aliquam, purus sit amet luctus venenatis, lectus magna fringilla
+              urna, porttitor rhoncus dolor pur
             </div>
-          </div>
-        </div>
-        <div className={style.egyptContainer} style={{ padding: '0 0 0 3%' }}>
-          <header className={style.egyptianHeader}>Pyramid 1997</header>
-          <div className={style.loremImsum}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor pur
-          </div>
 
-          <div className={style.creators}>
-            <div className={style.creatorImgContainer}>
-              <div className={style.creatorPic1}>
-                <Image src="/Ellipse1.png" alt="profilepic" fill />
+            <div className={style.creators}>
+              <div className={style.creatorImgContainer}>
+                <div className={style.creatorPic1}>
+                  <Image src="/Ellipse1.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse2.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse5.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse3.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse4.png" alt="profilepic" fill />
+                </div>
               </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse2.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse5.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse3.png" alt="profilepic" fill />
-              </div>
-              <div className={style.creatorPic}>
-                <Image src="/Ellipse4.png" alt="profilepic" fill />
+              <div className={style.major}>64 major creators</div>
+              <div className={style.imgContainer}>
+                <Image
+                  src="/arrow.png"
+                  alt="profilepic"
+                  className={style.arrow}
+                  width={30}
+                  height={18}
+                />
               </div>
             </div>
-            <div className={style.major}>64 major creators</div>
-            <div className={style.imgContainer}>
-              <Image
-                src="/arrow.png"
-                alt="profilepic"
-                className={style.arrow}
-                width={30}
-                height={18}
-              />
+          </div>
+          <div className={style.productImageRight}>
+            <Image
+              src="/mummies.png"
+              alt="lady in black"
+              fill
+              className={style.prodImg}
+            />
+            <div className={style.opacityContainer}>
+              <div className={style.productImageText}>Are We There Yet?</div>
+              <div
+                className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+              >
+                <div className={style.whiteArrow}>
+                  <Image src="/vector.png" alt="vector img" fill />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
+
+      <Link href={`/market/12`} style={{ textDecoration: 'none' }}>
+        <div className={style.productContainer}>
+          <div className={style.productImage}>
+            <Image
+              src="/pyramid.png"
+              alt="pyramid"
+              fill
+              className={style.prodImg}
+            />
+            <div className={style.opacityContainer}>
+              <div className={style.productImageText}>Pyramid 1997</div>
+              <div
+                className={`${style.whiteArrowContainer} animate__animated animate__pulse animate__infinite`}
+              >
+                <div className={style.whiteArrow}>
+                  <Image src="/vector.png" alt="vector img" fill />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={style.egyptContainer} style={{ padding: '0 0 0 3%' }}>
+            <header className={style.egyptianHeader}>Pyramid 1997</header>
+            <div className={style.loremImsum}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+              aliquam, purus sit amet luctus venenatis, lectus magna fringilla
+              urna, porttitor rhoncus dolor pur
+            </div>
+
+            <div className={style.creators}>
+              <div className={style.creatorImgContainer}>
+                <div className={style.creatorPic1}>
+                  <Image src="/Ellipse1.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse2.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse5.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse3.png" alt="profilepic" fill />
+                </div>
+                <div className={style.creatorPic}>
+                  <Image src="/Ellipse4.png" alt="profilepic" fill />
+                </div>
+              </div>
+              <div className={style.major}>64 major creators</div>
+              <div className={style.imgContainer}>
+                <Image
+                  src="/arrow.png"
+                  alt="profilepic"
+                  className={style.arrow}
+                  width={30}
+                  height={18}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Link>
+
       <div className={style.auction}>
         <div className={style.auctionHeader}>
           See Upcoming Auctions and Exhibitions

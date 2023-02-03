@@ -9,7 +9,8 @@ import { BarState } from '../../Context/Allcontext';
 import Link from 'next/link';
 
 const Product = () => {
-  const { products } = BarState();
+  const { products, addItems } = BarState();
+
   const router = useRouter();
   const [item, setItem] = useState({
     id: 0,
@@ -112,15 +113,29 @@ const Product = () => {
             </div>
 
             <div className={css.addToCart}>
-              <button>
-                <span>Add to cart </span>
-                <Image
-                  src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/ffffff/external-arrow-arrow-line-royyan-wijaya-detailed-outline-royyan-wijaya-13.png"
-                  alt="arrow"
-                  width={24}
-                  height={24}
-                />
-              </button>
+              <Link href="/cart/cart" style={{ textDecoration: 'none' }}>
+                <button
+                  onClick={() =>
+                    addItems({
+                      id: item.id,
+                      name: item.name,
+                      price: item.price,
+                      creator: item.creator,
+                      image: item.image,
+                      quantity,
+                      size: '200'
+                    })
+                  }
+                >
+                  <span>Add to cart </span>
+                  <Image
+                    src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/ffffff/external-arrow-arrow-line-royyan-wijaya-detailed-outline-royyan-wijaya-13.png"
+                    alt="arrow"
+                    width={24}
+                    height={24}
+                  />
+                </button>
+              </Link>
               <div className={css.loveContainer}>
                 <Image src="/love.png" width={47} height={32} alt="love" />
               </div>

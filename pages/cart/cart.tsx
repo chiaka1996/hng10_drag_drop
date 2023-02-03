@@ -2,8 +2,11 @@ import NavBar from '../../Components/NavBar/NavBar';
 import Sidebar from '../../Components/SideBar/SideBar';
 import cs from '../../styles/cart.module.css';
 import Image from 'next/image';
+import { BarState } from '../../Context/Allcontext';
 
 const Cart = () => {
+  const { items } = BarState();
+
   return (
     <main>
       <NavBar page="market" />
@@ -27,36 +30,38 @@ const Cart = () => {
       </div>
 
       <section className={cs.cartItems}>
-        <div className={cs.item}>
-          <div className={cs.cartImgContainer}>
-            <Image src="/Rectangle1.png" alt="cart list" fill />
-          </div>
-          <div className={cs.itemDetails}>
-            <div className={cs.itemHeader}>
-              <header>Philomena ‘22</header>
-              <div className={cs.cancelContainer}>
-                <Image
-                  src="/cartCancel.png"
-                  alt="cancel item"
-                  width={12}
-                  height={12}
-                  // fill
-                />
-              </div>
+        {items.map((item, i) => (
+          <div className={cs.item} key={i}>
+            <div className={cs.cartImgContainer}>
+              <Image src={item.image} alt="cart list" fill />
             </div>
+            <div className={cs.itemDetails}>
+              <div className={cs.itemHeader}>
+                <header>{item.name}</header>
+                <div className={cs.cancelContainer}>
+                  <Image
+                    src="/cartCancel.png"
+                    alt="cancel item"
+                    width={12}
+                    height={12}
+                    // fill
+                  />
+                </div>
+              </div>
 
-            <div className={cs.clearamane}>Clearamane</div>
-            <div className={cs.size}>
-              Size: <span>200 ft</span>
-            </div>
-            <div className={cs.itemCount}>
-              <div className={cs.quantity}>
-                <span>- </span> 1 <span> +</span>
+              <div className={cs.clearamane}>{item.creator}</div>
+              <div className={cs.size}>
+                Size: <span>{item.size} ft</span>
               </div>
-              <div className={cs.price}>$35.50</div>
+              <div className={cs.itemCount}>
+                <div className={cs.quantity}>
+                  <span>- </span> {item.quantity} <span> +</span>
+                </div>
+                <div className={cs.price}>${item.price}</div>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </section>
 
       <section className={cs.checkout}>
