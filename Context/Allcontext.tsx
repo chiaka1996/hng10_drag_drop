@@ -20,6 +20,7 @@ type product = {
   image: string;
   country: string;
   views: number;
+  category: string;
 };
 
 type item = {
@@ -32,24 +33,48 @@ type item = {
   creator: string;
 };
 
+// interface prop
+//   y: string | string[];
+// }
+
 type barContextType = {
   bar: boolean;
   openBar: () => void;
   closeBar: () => void;
   bidComments: Comment[];
   products: product[];
+  filtered: product[];
   items: item[];
   addItems: (x: item) => void;
+  addCategory: (y: string | string[]) => void;
+  addPrice: (y: number) => void;
+  addSearch: (y: string) => void;
+  addArtist: (y: string | string[]) => void;
+  cat: string[];
+  pri: number | null;
+  sear: string | null;
+  art: string[];
+  filterProduct: () => void;
 };
 
 const barContextDefaultValues: barContextType = {
   bar: false,
+  cat: [],
+  pri: null,
+  sear: null,
+  art: [],
   addItems: (x: item) => {},
   items: [],
   bidComments: [],
   products: [],
+  filtered: [],
   openBar: () => {},
-  closeBar: () => {}
+  closeBar: () => {},
+  addCategory: (y: string | string[]) => {},
+  addPrice: (y: number) => {},
+  addSearch: (y: string) => {},
+  addArtist: (y: string | string[]) => {},
+  filterProduct: () => {}
 };
 
 const BarContext = createContext<barContextType>(barContextDefaultValues);
@@ -65,6 +90,11 @@ type Props = {
 export const State = ({ children }: Props) => {
   const [bar, setBar] = useState<boolean>(false);
   const [items, setItems] = useState<item[]>([]);
+  const [cat, setCategory] = useState<string[]>([]);
+  const [pri, setPrice] = useState<number | null>(null);
+  const [sear, setSearch] = useState<string | null>(null);
+  const [art, setArtist] = useState<string[]>([]);
+  const [filtered, setFiltered] = useState<product[]>([]);
   const [bidComments, setBidComments] = useState<Comment[]>([
     { name: 'osuji chiaka', comment: 'instant bid', img: '/bid1.png' },
     { name: 'Ella Flynn', comment: 'Tight bid', img: '/bid2.png' },
@@ -90,7 +120,8 @@ export const State = ({ children }: Props) => {
       creator: 'Ali Darwa',
       image: '/Rectangle1.png',
       country: 'Nigeria',
-      views: 3
+      views: 3,
+      category: 'Art and Museum'
     },
     {
       id: 2,
@@ -99,7 +130,8 @@ export const State = ({ children }: Props) => {
       creator: 'Ali Darwa',
       image: '/Rectangle2.png',
       country: 'Italy',
-      views: 2
+      views: 2,
+      category: 'Editorial'
     },
     {
       id: 3,
@@ -108,7 +140,8 @@ export const State = ({ children }: Props) => {
       creator: 'Clemz',
       image: '/Rectangle3.png',
       country: 'Brazil',
-      views: 5
+      views: 5,
+      category: 'Fashion'
     },
     {
       id: 4,
@@ -117,7 +150,8 @@ export const State = ({ children }: Props) => {
       creator: 'Big cj',
       image: '/Rectangle4.png',
       country: 'Nigeria',
-      views: 2.3
+      views: 2,
+      category: 'Optics'
     },
     {
       id: 5,
@@ -126,7 +160,8 @@ export const State = ({ children }: Props) => {
       creator: 'Ali Darwa',
       image: '/Rectangle5.png',
       country: 'Italy',
-      views: 7.2
+      views: 7,
+      category: 'Art and Museum'
     },
     {
       id: 6,
@@ -135,7 +170,8 @@ export const State = ({ children }: Props) => {
       creator: 'Ali Darwa',
       image: '/Rectangle6.png',
       country: 'Ghana',
-      views: 1.6
+      views: 1,
+      category: 'Fashion'
     },
     {
       id: 7,
@@ -144,7 +180,8 @@ export const State = ({ children }: Props) => {
       creator: 'Osuji Art',
       image: '/Rectangle7.png',
       country: 'Korea',
-      views: 1.9
+      views: 1.9,
+      category: 'Optics'
     },
     {
       id: 8,
@@ -153,7 +190,8 @@ export const State = ({ children }: Props) => {
       creator: 'clemz',
       image: '/Rectangle8.png',
       country: 'China',
-      views: 3.2
+      views: 3,
+      category: 'Fashion'
     },
     {
       id: 9,
@@ -162,7 +200,8 @@ export const State = ({ children }: Props) => {
       creator: 'clemz',
       image: '/Rectangle9.png',
       country: 'USA',
-      views: 1.1
+      views: 1,
+      category: 'Nature'
     },
     {
       id: 10,
@@ -171,7 +210,8 @@ export const State = ({ children }: Props) => {
       creator: 'clemz',
       image: '/explore1.png',
       country: 'Ethiopia',
-      views: 3
+      views: 3,
+      category: 'Editorial'
     },
     {
       id: 11,
@@ -180,7 +220,8 @@ export const State = ({ children }: Props) => {
       creator: 'Ali Darwa',
       image: '/explore2.png',
       country: 'Benin',
-      views: 7.1
+      views: 7.1,
+      category: 'Art and Museum'
     },
     {
       id: 12,
@@ -189,7 +230,8 @@ export const State = ({ children }: Props) => {
       creator: 'Big cj',
       image: '/pyramid.png',
       country: 'Egypt',
-      views: 1.9
+      views: 1.9,
+      category: 'Art and Museum'
     },
     {
       id: 13,
@@ -198,7 +240,8 @@ export const State = ({ children }: Props) => {
       creator: 'clemz',
       image: '/mummies.png',
       country: 'Italy',
-      views: 1.7
+      views: 1.7,
+      category: 'Editorial'
     }
   ]);
 
@@ -214,6 +257,58 @@ export const State = ({ children }: Props) => {
     setItems(ite => [...ite, x]);
   };
 
+  const addCategory = (y: string | string[]) => {
+    typeof y == 'string'
+      ? setCategory(item => [...item, y])
+      : setCategory([...y]);
+  };
+
+  const addArtist = (y: string | string[]) => {
+    typeof y == 'string' ? setArtist(item => [...item, y]) : setArtist([...y]);
+  };
+
+  const addPrice = (y: number) => setPrice(y);
+
+  const addSearch = (y: string) => setSearch(y);
+
+  const filterProduct = () => {
+    // products.map((prod, i) =>
+    //   (cat.length == 0 ? true : cat.includes(prod.category)) &&
+    //   (pri != null ? prod.price <= pri : true) &&
+    //   (art.length == 0 ? true : art.includes(prod.creator)) &&
+    //   (sear != null
+    //     ? prod.name.toLowerCase().indexOf(sear.toLowerCase()) != -1
+    //     : true)
+    //     ? setFiltered(z => [...z, prod])
+    //     : ''
+    // );
+    setFiltered([]);
+    products.map((x, i) => {
+      if (cat.length == 0 && pri == null && art.length == 0 && sear == null) {
+        setFiltered(z => [...z, x]);
+      } else {
+        (cat.length == 0 ? true : cat.includes(x.category)) &&
+        (pri != null ? x.price <= pri : true) &&
+        (art.length == 0 ? true : art.includes(x.creator)) &&
+        (sear != null
+          ? x.name.toLowerCase().indexOf(sear.toLowerCase()) != -1
+          : true)
+          ? setFiltered(z => [...z, x])
+          : '';
+      }
+    });
+  };
+
+  useEffect(() => {
+    filterProduct();
+    //   console.log(cat);
+    //   console.log(pri);
+    //   console.log(sear);
+    //   console.log(art);
+  }, [cat, pri, sear, art]);
+
+  console.log(filtered);
+
   const value = {
     bar,
     bidComments,
@@ -221,7 +316,17 @@ export const State = ({ children }: Props) => {
     closeBar,
     products,
     items,
-    addItems
+    addItems,
+    cat,
+    pri,
+    sear,
+    art,
+    addCategory,
+    addPrice,
+    addSearch,
+    addArtist,
+    filterProduct,
+    filtered
   };
 
   return (

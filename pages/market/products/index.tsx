@@ -1,20 +1,63 @@
-import NavBar from '../../Components/NavBar/NavBar';
-import Sidebar from '../../Components/SideBar/SideBar';
-import css from '../../styles/market.module.css';
+import React, { useState, useEffect } from 'react';
+import NavBar from '../../../Components/NavBar/NavBar';
+import Sidebar from '../../../Components/SideBar/SideBar';
+import css from '../../../styles/market.module.css';
 import Image from 'next/image';
-import Product from '../../Components/Market/Products';
-import Footer from '../../Components/Footer/Footer';
-import { BarState } from '../../Context/Allcontext';
+import Product from '../../../Components/Market/Products';
+import Footer from '../../../Components/Footer/Footer';
+import { BarState } from '../../../Context/Allcontext';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+type product = {
+  id: number;
+  name: string;
+  price: number;
+  creator: string;
+  image: string;
+  country: string;
+  views: number;
+  category: string;
+};
 
 const Market = () => {
-  const { products } = BarState();
+  const {
+    filtered,
+    addCategory,
+    addPrice,
+    addSearch,
+    addArtist,
+    cat,
+    pri,
+    sear,
+    art
+  } = BarState();
+
+  const router = useRouter();
+  const [seemore, setSeemore] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
+  useEffect(() => {
+    if (!router.isReady) return;
+    const { category, price, search, artist } = router.query;
+    category ? addCategory(category) : '';
+    artist ? addArtist(artist) : '';
+    !Array.isArray(price) && price ? addPrice(parseInt(price)) : '';
+    !Array.isArray(search) && search ? addSearch(search) : '';
+  }, [
+    router.isReady,
+    router.query,
+    router.query.category,
+    router.query.price,
+    router.query.search,
+    router.query.artist
+  ]);
+
   return (
     <div className={css.marketBody}>
       <NavBar page="market" />
       <Sidebar page="market" />
       <div className={css.productLinkMarket}>
-        Home/ Marketplace/ <span style={{ color: 'black' }}>Editorials</span>
+        Home/ Marketplace/ <span style={{ color: 'black' }}>Products</span>
       </div>
 
       <div className={css.searchContainer}>
@@ -117,7 +160,9 @@ const Market = () => {
 
         <div className={css.productsContainer}>
           <div className={css.results}>
-            <span>See 1-6 0f 15 results</span>
+            <span>
+              See 1-{seemore} 0f {filtered.length} results
+            </span>
             <button>
               Sort by
               <Image
@@ -157,7 +202,7 @@ const Market = () => {
           </div>
 
           <div className={css.prods}>
-            {products.map((prod, i) => (
+            {filtered.map((prod, i) => (
               <Link
                 href={`/market/${prod.id}`}
                 key={i}
@@ -172,9 +217,11 @@ const Market = () => {
               </Link>
             ))}
           </div>
-          <div className={css.btnContainer}>
-            <button>See more</button>
-          </div>
+          {/* <div className={css.btnContainer}>
+            <button onClick={showMore}>
+              {seemore <= 9 ? 'See more' : 'See less'}
+            </button>
+          </div> */}
         </div>
       </div>
       <Footer />

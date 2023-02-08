@@ -40,7 +40,12 @@ const NavBar = ({ page }: prop) => {
             <div>Home</div>
           </Link>
           <Link
-            href="/market/market"
+            href={{
+              pathname: '/market/products',
+              query: {
+                category: ['Nature']
+              }
+            }}
             className={page === 'market' ? nav.navLinksUnderline : nav.navLinks}
           >
             <div>Marketplace</div>

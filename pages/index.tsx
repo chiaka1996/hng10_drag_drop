@@ -364,7 +364,9 @@ export default function Home() {
               AND LOWEST BIDS.
             </div>
           </div>
-          <div className={style.seemore}>see more</div>
+          <Link href={`/market/market`} style={{ textDecoration: 'none' }}>
+            <div className={style.seemore}>see more</div>
+          </Link>
           <button className={style.reminder}>Set a reminder</button>
         </div>
         <div className={style.loader_btn}>

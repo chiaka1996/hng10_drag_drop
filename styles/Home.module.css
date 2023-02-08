@@ -369,6 +369,7 @@
     bottom: 22%;
     right: 22%;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .reminder{
@@ -838,6 +839,7 @@
             font-size: 17px;
             bottom: 14%;
             right: 50%;
+            cursor: pointer;
         }
 
         .reminder{
