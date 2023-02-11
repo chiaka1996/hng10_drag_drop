@@ -30,15 +30,24 @@ const Market = () => {
     cat,
     pri,
     sear,
-    art
+    art,
+    products
   } = BarState();
 
   const router = useRouter();
+  const categoryList: string[] = [
+    'Editorial',
+    'Fashion',
+    'Optics',
+    'Art and Museum',
+    'Nature'
+  ];
 
   const [total, setTotal] = useState<number>(filtered.length);
   const [seemore, setSeemore] = useState<number>(9);
   const [less, setLess] = useState<number>(9);
   const [pictures, setPictures] = useState<product[]>([]);
+  const [showCategory, setShowCategory] = useState<boolean>(true);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -64,6 +73,10 @@ const Market = () => {
     router.query.search,
     router.query.artist
   ]);
+
+  const showCat = () => {
+    setShowCategory(x => !x);
+  };
 
   const showMore = () => {
     if (seemore == 9) {
@@ -126,82 +139,47 @@ const Market = () => {
             <div className={css.filterText}>Filter</div>
           </div>
 
-          <div className={css.byCategory}>
+          <div className={css.byCategory} onClick={showCat}>
             <div className={css.categoryText}>By category</div>
-            <Image
-              src="/categoryArrow.png"
-              alt="arrow up"
-              width={16}
-              height={9}
-              className={css.categoryImage}
-            />
+            <div className={css.arrowContainer}>
+              <Image
+                src="/categoryArrow.png"
+                alt="arrow up"
+                fill
+                className={
+                  showCategory ? css.categoryImage : css.downCategoryArrow
+                }
+              />
+            </div>
           </div>
 
-          <div className={css.checkboxes}>
-            <div className={css.checkContainer}>
-              <input
-                id="Editorial"
-                type="checkbox"
-                className={css.check}
-                value="Editorial"
-                onChange={categoryStatus}
-              />
-              <label className={css.checkLabel} htmlFor="Editorial">
-                Editorial
-              </label>
-            </div>
+          <div className={showCategory ? css.checkboxes : css.closeCheckboxes}>
+            {categoryList.map((item, i) => (
+              <div className={css.checkContainer} key={i}>
+                {cat.includes(item) ? (
+                  <input
+                    id={item}
+                    type="checkbox"
+                    className={css.check}
+                    value={item}
+                    onChange={categoryStatus}
+                    checked
+                  />
+                ) : (
+                  <input
+                    id={item}
+                    type="checkbox"
+                    className={css.check}
+                    value={item}
+                    onChange={categoryStatus}
+                  />
+                )}
 
-            <div className={css.checkContainer}>
-              <input
-                id="Fashion"
-                type="checkbox"
-                className={css.check}
-                value="Fashion"
-                onChange={categoryStatus}
-              />
-              <label className={css.checkLabel} htmlFor="Fashion">
-                Fashion
-              </label>
-            </div>
-
-            <div className={css.checkContainer}>
-              <input
-                id="Optics"
-                type="checkbox"
-                className={css.check}
-                value="Optics"
-                onChange={categoryStatus}
-              />
-              <label className={css.checkLabel} htmlFor="Optics">
-                Optics
-              </label>
-            </div>
-
-            <div className={css.checkContainer}>
-              <input
-                id="Art & Museum"
-                type="checkbox"
-                className={css.check}
-                value="Art and Museum"
-                onChange={categoryStatus}
-              />
-              <label className={css.checkLabel} htmlFor="Art & Museum">
-                Art & Museum
-              </label>
-            </div>
-
-            <div className={css.checkContainer}>
-              <input
-                id="Nature"
-                type="checkbox"
-                className={css.check}
-                value="Nature"
-                onChange={categoryStatus}
-              />
-              <label className={css.checkLabel} htmlFor="Nature">
-                Nature
-              </label>
-            </div>
+                <label className={css.checkLabel} htmlFor={item}>
+                  {item}
+                </label>
+              </div>
+            ))}
           </div>
 
           <div className={css.byCategory}>
