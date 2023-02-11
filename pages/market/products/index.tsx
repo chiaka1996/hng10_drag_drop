@@ -34,13 +34,26 @@ const Market = () => {
   } = BarState();
 
   const router = useRouter();
-  const [seemore, setSeemore] = useState<number>(0);
-  const [total, setTotal] = useState<number>(0);
+
+  const [total, setTotal] = useState<number>(filtered.length);
+  const [seemore, setSeemore] = useState<number>(9);
+  const [less, setLess] = useState<number>(9);
+  const [pictures, setPictures] = useState<product[]>([]);
+
   useEffect(() => {
     if (!router.isReady) return;
     const { category, price, search, artist } = router.query;
-    category ? addCategory(category) : '';
-    artist ? addArtist(artist) : '';
+
+    if (category && typeof category != 'string') {
+      addCategory(category);
+    } else if (typeof category == 'string') {
+      addCategory([category]);
+    } else {
+      addCategory([]);
+    }
+    if (artist) {
+      addArtist(artist);
+    }
     !Array.isArray(price) && price ? addPrice(parseInt(price)) : '';
     !Array.isArray(search) && search ? addSearch(search) : '';
   }, [
@@ -52,6 +65,42 @@ const Market = () => {
     router.query.artist
   ]);
 
+  const showMore = () => {
+    if (seemore == 9) {
+      setSeemore(filtered.length);
+    } else if (seemore === filtered.length) {
+      setSeemore(9);
+    }
+  };
+
+  const categoryStatus = (e: any) => {
+    const check = e.target.checked;
+    const value = e.target.value;
+    if (check) {
+      cat.includes(value)
+        ? ''
+        : router.push({
+            pathname: '/market/products',
+            query: {
+              category: [...cat, value],
+              price: pri && !Array.isArray(pri) ? pri : [],
+              artist: art,
+              search: sear && !Array.isArray(sear) ? sear : []
+            }
+          });
+    } else {
+      cat.splice(cat.indexOf(value), 1);
+      router.push({
+        pathname: '/market/products',
+        query: {
+          category: cat,
+          price: pri && !Array.isArray(pri) ? pri : [],
+          artist: art,
+          search: sear && !Array.isArray(sear) ? sear : []
+        }
+      });
+    }
+  };
   return (
     <div className={css.marketBody}>
       <NavBar page="market" />
@@ -90,28 +139,68 @@ const Market = () => {
 
           <div className={css.checkboxes}>
             <div className={css.checkContainer}>
-              <input type="checkbox" className={css.check} />
-              <span>Editorial</span>
+              <input
+                id="Editorial"
+                type="checkbox"
+                className={css.check}
+                value="Editorial"
+                onChange={categoryStatus}
+              />
+              <label className={css.checkLabel} htmlFor="Editorial">
+                Editorial
+              </label>
             </div>
 
             <div className={css.checkContainer}>
-              <input type="checkbox" className={css.check} />
-              <span>Fashion</span>
+              <input
+                id="Fashion"
+                type="checkbox"
+                className={css.check}
+                value="Fashion"
+                onChange={categoryStatus}
+              />
+              <label className={css.checkLabel} htmlFor="Fashion">
+                Fashion
+              </label>
             </div>
 
             <div className={css.checkContainer}>
-              <input type="checkbox" className={css.check} />
-              <span>Optics</span>
+              <input
+                id="Optics"
+                type="checkbox"
+                className={css.check}
+                value="Optics"
+                onChange={categoryStatus}
+              />
+              <label className={css.checkLabel} htmlFor="Optics">
+                Optics
+              </label>
             </div>
 
             <div className={css.checkContainer}>
-              <input type="checkbox" className={css.check} />
-              <span>Art & Museum</span>
+              <input
+                id="Art & Museum"
+                type="checkbox"
+                className={css.check}
+                value="Art and Museum"
+                onChange={categoryStatus}
+              />
+              <label className={css.checkLabel} htmlFor="Art & Museum">
+                Art & Museum
+              </label>
             </div>
 
             <div className={css.checkContainer}>
-              <input type="checkbox" className={css.check} />
-              <span> Nature</span>
+              <input
+                id="Nature"
+                type="checkbox"
+                className={css.check}
+                value="Nature"
+                onChange={categoryStatus}
+              />
+              <label className={css.checkLabel} htmlFor="Nature">
+                Nature
+              </label>
             </div>
           </div>
 
@@ -202,26 +291,34 @@ const Market = () => {
           </div>
 
           <div className={css.prods}>
-            {filtered.map((prod, i) => (
-              <Link
-                href={`/market/${prod.id}`}
-                key={i}
-                style={{ textDecoration: 'none' }}
-              >
-                <Product
-                  img={prod.image}
-                  name={prod.name}
-                  price={prod.price}
-                  id={prod.id}
-                />
-              </Link>
-            ))}
+            {filtered.map((prod, i) =>
+              i < seemore ? (
+                <Link
+                  href={`/market/${prod.id}`}
+                  key={i}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Product
+                    img={prod.image}
+                    name={prod.name}
+                    price={prod.price}
+                    id={prod.id}
+                  />
+                </Link>
+              ) : (
+                ''
+              )
+            )}
           </div>
-          {/* <div className={css.btnContainer}>
-            <button onClick={showMore}>
-              {seemore <= 9 ? 'See more' : 'See less'}
-            </button>
-          </div> */}
+          {filtered.length > 9 ? (
+            <div className={css.btnContainer}>
+              <button onClick={showMore}>
+                {seemore != filtered.length ? 'See more' : 'see less'}
+              </button>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <Footer />

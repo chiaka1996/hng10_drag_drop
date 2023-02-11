@@ -46,13 +46,13 @@ type barContextType = {
   filtered: product[];
   items: item[];
   addItems: (x: item) => void;
-  addCategory: (y: string | string[]) => void;
+  addCategory: (y: string[]) => void;
   addPrice: (y: number) => void;
   addSearch: (y: string) => void;
   addArtist: (y: string | string[]) => void;
   cat: string[];
-  pri: number | null;
-  sear: string | null;
+  pri: number | null | string[];
+  sear: string | null | string[];
   art: string[];
   filterProduct: () => void;
 };
@@ -70,7 +70,7 @@ const barContextDefaultValues: barContextType = {
   filtered: [],
   openBar: () => {},
   closeBar: () => {},
-  addCategory: (y: string | string[]) => {},
+  addCategory: (y: string[]) => {},
   addPrice: (y: number) => {},
   addSearch: (y: string) => {},
   addArtist: (y: string | string[]) => {},
@@ -91,8 +91,8 @@ export const State = ({ children }: Props) => {
   const [bar, setBar] = useState<boolean>(false);
   const [items, setItems] = useState<item[]>([]);
   const [cat, setCategory] = useState<string[]>([]);
-  const [pri, setPrice] = useState<number | null>(null);
-  const [sear, setSearch] = useState<string | null>(null);
+  const [pri, setPrice] = useState<number | null | string[]>(null);
+  const [sear, setSearch] = useState<string | null | string[]>(null);
   const [art, setArtist] = useState<string[]>([]);
   const [filtered, setFiltered] = useState<product[]>([]);
   const [bidComments, setBidComments] = useState<Comment[]>([
@@ -257,10 +257,8 @@ export const State = ({ children }: Props) => {
     setItems(ite => [...ite, x]);
   };
 
-  const addCategory = (y: string | string[]) => {
-    typeof y == 'string'
-      ? setCategory(item => [...item, y])
-      : setCategory([...y]);
+  const addCategory = (y: string[]) => {
+    setCategory([...y]);
   };
 
   const addArtist = (y: string | string[]) => {
@@ -272,25 +270,15 @@ export const State = ({ children }: Props) => {
   const addSearch = (y: string) => setSearch(y);
 
   const filterProduct = () => {
-    // products.map((prod, i) =>
-    //   (cat.length == 0 ? true : cat.includes(prod.category)) &&
-    //   (pri != null ? prod.price <= pri : true) &&
-    //   (art.length == 0 ? true : art.includes(prod.creator)) &&
-    //   (sear != null
-    //     ? prod.name.toLowerCase().indexOf(sear.toLowerCase()) != -1
-    //     : true)
-    //     ? setFiltered(z => [...z, prod])
-    //     : ''
-    // );
     setFiltered([]);
     products.map((x, i) => {
       if (cat.length == 0 && pri == null && art.length == 0 && sear == null) {
         setFiltered(z => [...z, x]);
       } else {
         (cat.length == 0 ? true : cat.includes(x.category)) &&
-        (pri != null ? x.price <= pri : true) &&
+        (pri != null && !Array.isArray(pri) ? x.price <= pri : true) &&
         (art.length == 0 ? true : art.includes(x.creator)) &&
-        (sear != null
+        (sear != null && !Array.isArray(sear)
           ? x.name.toLowerCase().indexOf(sear.toLowerCase()) != -1
           : true)
           ? setFiltered(z => [...z, x])
@@ -301,10 +289,6 @@ export const State = ({ children }: Props) => {
 
   useEffect(() => {
     filterProduct();
-    //   console.log(cat);
-    //   console.log(pri);
-    //   console.log(sear);
-    //   console.log(art);
   }, [cat, pri, sear, art]);
 
   console.log(filtered);

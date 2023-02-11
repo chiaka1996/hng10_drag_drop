@@ -3,13 +3,27 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
 import { BarState } from '../../Context/Allcontext';
+import { useState } from 'react';
 
 interface prop {
   page: string;
 }
 
+interface query {
+  category: string[];
+  price: string | string[];
+  artist: string[];
+  search: string | string[];
+}
+
 const NavBar = ({ page }: prop) => {
   const { bar, openBar } = BarState();
+  const [navQuery, setQuery] = useState<query>({
+    category: [],
+    price: [],
+    artist: [],
+    search: []
+  });
   return (
     <div>
       <Head>
@@ -43,7 +57,10 @@ const NavBar = ({ page }: prop) => {
             href={{
               pathname: '/market/products',
               query: {
-                category: ['Nature']
+                category: navQuery.category,
+                price: navQuery.price,
+                artist: navQuery.artist,
+                search: navQuery.search
               }
             }}
             className={page === 'market' ? nav.navLinksUnderline : nav.navLinks}
