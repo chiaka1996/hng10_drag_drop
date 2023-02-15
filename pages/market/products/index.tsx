@@ -43,11 +43,15 @@ const Market = () => {
     'Nature'
   ];
 
+  const ArtistList: string[] = ['Ali Darwa', 'Clemz', 'Big cj', 'Osuji Art'];
+
   const [total, setTotal] = useState<number>(filtered.length);
   const [seemore, setSeemore] = useState<number>(9);
   const [less, setLess] = useState<number>(9);
   const [pictures, setPictures] = useState<product[]>([]);
   const [showCategory, setShowCategory] = useState<boolean>(true);
+  const [showArtist, setShowArtist] = useState<boolean>(true);
+  const [searchInput, setSearchInput] = useState<string>('');
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -60,9 +64,15 @@ const Market = () => {
     } else {
       addCategory([]);
     }
-    if (artist) {
+
+    if (artist && typeof artist != 'string') {
       addArtist(artist);
+    } else if (typeof artist == 'string') {
+      addArtist([artist]);
+    } else {
+      addArtist([]);
     }
+
     !Array.isArray(price) && price ? addPrice(parseInt(price)) : '';
     !Array.isArray(search) && search ? addSearch(search) : '';
   }, [
@@ -76,6 +86,10 @@ const Market = () => {
 
   const showCat = () => {
     setShowCategory(x => !x);
+  };
+
+  const toggleArtist = () => {
+    setShowArtist(x => !x);
   };
 
   const showMore = () => {
@@ -114,6 +128,43 @@ const Market = () => {
       });
     }
   };
+
+  // /////////////artist function
+  const artistStatus = (e: any) => {
+    const check = e.target.checked;
+    const value = e.target.value;
+    if (check) {
+      art.includes(value)
+        ? ''
+        : router.push({
+            pathname: '/market/products',
+            query: {
+              category: cat,
+              price: pri && !Array.isArray(pri) ? pri : [],
+              artist: [...art, value],
+              search: sear && !Array.isArray(sear) ? sear : []
+            }
+          });
+    } else {
+      art.splice(art.indexOf(value), 1);
+
+      router.push({
+        pathname: '/market/products',
+        query: {
+          category: cat,
+          price: pri && !Array.isArray(pri) ? pri : [],
+          artist: art,
+          search: sear && !Array.isArray(sear) ? sear : []
+        }
+      });
+    }
+  };
+
+  const querySearch = (e: any) => {
+    const value: string = e.target.value;
+    addSearch(value);
+  };
+
   return (
     <div className={css.marketBody}>
       <NavBar page="market" />
@@ -125,7 +176,14 @@ const Market = () => {
       <div className={css.searchContainer}>
         <div className={css.filtersContainer}>
           <div className={css.inputContainer}>
-            <input type="text" placeholder="Search" className={css.search} />
+            <input
+              type="text"
+              value={sear && !Array.isArray(sear) ? sear : ''}
+              placeholder="Search"
+              className={css.search}
+              onChange={querySearch}
+              // onKeyDown={enterSearch}
+            />
           </div>
 
           <div className={css.filter}>
@@ -195,33 +253,47 @@ const Market = () => {
 
           <div className={css.price}>$100.00 - $150.00</div>
 
-          <div className={css.byCategory}>
-            <div className={css.categoryText}>By artist</div>
-            <Image
-              src="/categoryArrow.png"
-              alt="arrow up"
-              width={16}
-              height={9}
-              className={css.categoryImage}
-            />
-          </div>
-          <div>
-            <div className={css.all}>All</div>
-            <div className={css.price}>$100.00 - $150.00</div>
-            <div className={css.price}>$150.00 - $200.00</div>
-            <div className={css.price}>$200.00 - $250.00</div>
-            <div className={css.price}>Above $250.00</div>
+          <div className={css.byCategory} onClick={toggleArtist}>
+            <div className={css.categoryText}>By Artist</div>
+            <div className={css.arrowContainer}>
+              <Image
+                src="/categoryArrow.png"
+                alt="arrow up"
+                fill
+                className={
+                  showArtist ? css.categoryImage : css.downCategoryArrow
+                }
+              />
+            </div>
           </div>
 
-          <div className={css.byCategory}>
-            <div className={css.categoryText}>Collection year</div>
-            <Image
-              src="/categoryArrow.png"
-              alt="arrow up"
-              width={16}
-              height={9}
-              className={css.categoryImage}
-            />
+          <div className={showArtist ? css.checkboxes : css.closeCheckboxes}>
+            {ArtistList.map((item, i) => (
+              <div className={css.checkContainer} key={i}>
+                {art.includes(item) ? (
+                  <input
+                    id={item}
+                    type="checkbox"
+                    className={css.check}
+                    value={item}
+                    onChange={artistStatus}
+                    checked
+                  />
+                ) : (
+                  <input
+                    id={item}
+                    type="checkbox"
+                    className={css.check}
+                    value={item}
+                    onChange={artistStatus}
+                  />
+                )}
+
+                <label className={css.checkLabel} htmlFor={item}>
+                  {item}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
 

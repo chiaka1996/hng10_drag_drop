@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 import {
   createContext,
   useContext,
@@ -33,10 +35,6 @@ type item = {
   creator: string;
 };
 
-// interface prop
-//   y: string | string[];
-// }
-
 type barContextType = {
   bar: boolean;
   openBar: () => void;
@@ -49,7 +47,7 @@ type barContextType = {
   addCategory: (y: string[]) => void;
   addPrice: (y: number) => void;
   addSearch: (y: string) => void;
-  addArtist: (y: string | string[]) => void;
+  addArtist: (y: string[]) => void;
   cat: string[];
   pri: number | null | string[];
   sear: string | null | string[];
@@ -73,7 +71,7 @@ const barContextDefaultValues: barContextType = {
   addCategory: (y: string[]) => {},
   addPrice: (y: number) => {},
   addSearch: (y: string) => {},
-  addArtist: (y: string | string[]) => {},
+  addArtist: (y: string[]) => {},
   filterProduct: () => {}
 };
 
@@ -88,6 +86,7 @@ type Props = {
 };
 
 export const State = ({ children }: Props) => {
+  const router = useRouter();
   const [bar, setBar] = useState<boolean>(false);
   const [items, setItems] = useState<item[]>([]);
   const [cat, setCategory] = useState<string[]>([]);
@@ -187,7 +186,7 @@ export const State = ({ children }: Props) => {
       id: 8,
       name: 'Rosemary `22',
       price: 3.9,
-      creator: 'clemz',
+      creator: 'Clemz',
       image: '/Rectangle8.png',
       country: 'China',
       views: 3,
@@ -197,7 +196,7 @@ export const State = ({ children }: Props) => {
       id: 9,
       name: 'Beverly',
       price: 10.2,
-      creator: 'clemz',
+      creator: 'Clemz',
       image: '/Rectangle9.png',
       country: 'USA',
       views: 1,
@@ -207,7 +206,7 @@ export const State = ({ children }: Props) => {
       id: 10,
       name: 'Sassy',
       price: 3.2,
-      creator: 'clemz',
+      creator: 'Clemz',
       image: '/explore1.png',
       country: 'Ethiopia',
       views: 3,
@@ -237,7 +236,7 @@ export const State = ({ children }: Props) => {
       id: 13,
       name: 'Are We There Yet',
       price: 4.5,
-      creator: 'clemz',
+      creator: 'Clemz',
       image: '/mummies.png',
       country: 'Italy',
       views: 1.7,
@@ -261,8 +260,10 @@ export const State = ({ children }: Props) => {
     setCategory([...y]);
   };
 
-  const addArtist = (y: string | string[]) => {
-    typeof y == 'string' ? setArtist(item => [...item, y]) : setArtist([...y]);
+  const addArtist = (y: string[]) => {
+    console.log(typeof y);
+    setArtist([...y]);
+    console.log(art);
   };
 
   const addPrice = (y: number) => setPrice(y);
@@ -289,9 +290,28 @@ export const State = ({ children }: Props) => {
 
   useEffect(() => {
     filterProduct();
-  }, [cat, pri, sear, art]);
+  }, [cat]);
 
-  console.log(filtered);
+  useEffect(() => {
+    filterProduct();
+  }, [art]);
+
+  useEffect(() => {
+    filterProduct();
+    router.push({
+      pathname: '/market/products',
+      query: {
+        category: cat,
+        price: pri && !Array.isArray(pri) ? pri : [],
+        artist: art,
+        search: sear && !Array.isArray(sear) ? sear : []
+      }
+    });
+  }, [sear]);
+
+  useEffect(() => {
+    filterProduct();
+  }, [pri]);
 
   const value = {
     bar,
