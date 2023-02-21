@@ -44,14 +44,13 @@ const Market = () => {
   ];
 
   const ArtistList: string[] = ['Ali Darwa', 'Clemz', 'Big cj', 'Osuji Art'];
+  const maxPrice: number = Math.round(Math.max(...products.map(x => x.price)));
 
-  const [total, setTotal] = useState<number>(filtered.length);
   const [seemore, setSeemore] = useState<number>(9);
-  const [less, setLess] = useState<number>(9);
-  const [pictures, setPictures] = useState<product[]>([]);
   const [showCategory, setShowCategory] = useState<boolean>(true);
   const [showArtist, setShowArtist] = useState<boolean>(true);
-  const [searchInput, setSearchInput] = useState<string>('');
+  const [showPrice, setShowPrice] = useState<boolean>(true);
+  const [range, setRange] = useState<number>(maxPrice);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -92,6 +91,10 @@ const Market = () => {
     setShowArtist(x => !x);
   };
 
+  const togglePriceArrow = () => {
+    setShowPrice(x => !x);
+  };
+
   const showMore = () => {
     if (seemore == 9) {
       setSeemore(filtered.length);
@@ -100,6 +103,7 @@ const Market = () => {
     }
   };
 
+  // category function////////////////////////////
   const categoryStatus = (e: any) => {
     const check = e.target.checked;
     const value = e.target.value;
@@ -129,7 +133,7 @@ const Market = () => {
     }
   };
 
-  // /////////////artist function
+  // /////////////artist function/////////////
   const artistStatus = (e: any) => {
     const check = e.target.checked;
     const value = e.target.value;
@@ -160,9 +164,24 @@ const Market = () => {
     }
   };
 
+  // search function/////////
   const querySearch = (e: any) => {
     const value: string = e.target.value;
     addSearch(value);
+  };
+
+  const changeRange = (e: any) => {
+    const value = e.target.value;
+    value ? setRange(value) : setRange(0);
+  };
+
+  //price function///////
+  const changePrice = (e: any) => {
+    const value = e.target.value;
+
+    if (e.key == 'Enter') {
+      value ? addPrice(parseInt(value)) : addPrice(0);
+    }
   };
 
   return (
@@ -182,7 +201,6 @@ const Market = () => {
               placeholder="Search"
               className={css.search}
               onChange={querySearch}
-              // onKeyDown={enterSearch}
             />
           </div>
 
@@ -242,16 +260,54 @@ const Market = () => {
 
           <div className={css.byCategory}>
             <div className={css.categoryText}>By price</div>
-            <Image
-              src="/categoryArrow.png"
-              alt="arrow up"
-              width={16}
-              height={9}
-              className={css.categoryImage}
-            />
+            <div className={css.arrowContainer} onClick={togglePriceArrow}>
+              <Image
+                src="/categoryArrow.png"
+                alt="arrow up"
+                fill
+                className={
+                  showPrice ? css.categoryImage : css.downCategoryArrow
+                }
+              />
+            </div>
           </div>
+          <div className={showPrice ? css.checkboxes : css.closeCheckboxes}>
+            <input
+              className={css.rangeType}
+              type="range"
+              min="0"
+              max={maxPrice}
+              value={range}
+            />
 
-          <div className={css.price}>$100.00 - $150.00</div>
+            <div className={css.priceValContainer}>
+              <div className={css.minContainer}>
+                <label htmlFor="min">min</label>
+                <br />
+                <input
+                  id="min"
+                  type="number"
+                  value="0"
+                  max={0}
+                  className={css.minPrice}
+                />
+              </div>{' '}
+              <div className={css.slash}>-</div>
+              <div className={css.maxContainer}>
+                <label htmlFor="max">max</label>
+                <br />
+                <input
+                  id="max"
+                  type="number"
+                  value={range}
+                  max={maxPrice}
+                  className={css.maxPrice}
+                  onChange={changeRange}
+                  onKeyDown={changePrice}
+                />
+              </div>
+            </div>
+          </div>
 
           <div className={css.byCategory} onClick={toggleArtist}>
             <div className={css.categoryText}>By Artist</div>
@@ -300,7 +356,8 @@ const Market = () => {
         <div className={css.productsContainer}>
           <div className={css.results}>
             <span>
-              See 1-{seemore} 0f {filtered.length} results
+              See 1-{filtered.length >= 10 ? seemore : filtered.length} 0f{' '}
+              {filtered.length} results
             </span>
             <button>
               Sort by

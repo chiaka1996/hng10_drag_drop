@@ -33,19 +33,9 @@ const Sidebar = ({ page }: prop) => {
           </div>
         </Link>
 
-        {/* <Link
-          href="/market/market"
-          style={{ textDecoration: 'none' }}
-          onClick={closeBar}
-        > */}
         <Link
           href={{
-            pathname: '/market/products',
-            query: {
-              category: ['Editorial', 'Fashion'],
-              artist: 'Ali Darwa',
-              price: 20.0
-            }
+            pathname: '/market/products'
           }}
           style={{ textDecoration: 'none' }}
           onClick={closeBar}

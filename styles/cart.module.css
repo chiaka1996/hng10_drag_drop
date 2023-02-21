@@ -103,6 +103,7 @@
     justify-content: center;
     align-items: center;
     transform: translateY(-20%);
+    cursor: pointer;
 }
 
 .clearamane{ 
@@ -141,6 +142,10 @@
     flex-direction: row;
     justify-content: space-between;
     width: 12%;
+}
+
+.quantity span{
+    cursor: pointer;
 }
 
 .price{
@@ -234,6 +239,13 @@
 
 .checkoutDetails span{
     color: #292929;
+}
+
+.cartEmpty{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5% 0 0 0;
 }
 
 @media only screen and (max-width: 1000px) {

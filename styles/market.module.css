@@ -189,6 +189,48 @@
     margin: 10% 0 0 0;
 }
 
+.rangeType{
+    background-color: black;
+    width: 100%;
+    height: 10px;
+    color: black;
+}
+
+.priceValContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.minContainer{
+    width: 40%;
+}
+
+.maxContainer{
+    width: 40%;
+}
+
+.slash{
+    transform: translateY(50%);
+}
+
+.minPrice{
+    width: 100%;
+    height: 35px;
+    font-size: 20px;
+    text-align: right;
+    outline: none;
+}
+
+.maxPrice{
+    width: 100%;
+    height: 35px;
+    font-size: 20px;
+    text-align: right;
+    outline: none;
+}
+
 .prods{
     margin: 8% 0 0 0;
     display: grid;

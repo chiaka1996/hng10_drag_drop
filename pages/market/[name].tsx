@@ -8,8 +8,18 @@ import { useRouter } from 'next/router';
 import { BarState } from '../../Context/Allcontext';
 import Link from 'next/link';
 
+type item = {
+  id: number;
+  name: string;
+  price: number;
+  creator: string;
+  image: string;
+  country: string;
+  views: number;
+};
+
 const Product = () => {
-  const { products, addItems } = BarState();
+  const { products, addItems, cartItems } = BarState();
 
   const router = useRouter();
   const [item, setItem] = useState({
@@ -27,6 +37,27 @@ const Product = () => {
   const [listing, setListing] = useState<boolean>(false);
   const [status, setStatus] = useState<boolean>(false);
   const [num, setNum] = useState<string | undefined | string[]>('0');
+  const [inCart, setInCart] = useState<boolean>(false);
+
+  const addToCart = (item: item) => {
+    for (let c = 0; c < cartItems.length; c++) {
+      if (cartItems[c].id == item.id) {
+        setInCart(true);
+        return;
+      }
+    }
+
+    if (!inCart)
+      addItems({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        creator: item.creator,
+        image: item.image,
+        quantity,
+        size: '200'
+      });
+  };
 
   const changeDescription = () => {
     setDescription(desc => !desc);
@@ -114,19 +145,7 @@ const Product = () => {
 
             <div className={css.addToCart}>
               <Link href="/cart/cart" style={{ textDecoration: 'none' }}>
-                <button
-                  onClick={() =>
-                    addItems({
-                      id: item.id,
-                      name: item.name,
-                      price: item.price,
-                      creator: item.creator,
-                      image: item.image,
-                      quantity,
-                      size: '200'
-                    })
-                  }
-                >
+                <button onClick={() => addToCart(item)}>
                   <span>Add to cart </span>
                   <Image
                     src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/ffffff/external-arrow-arrow-line-royyan-wijaya-detailed-outline-royyan-wijaya-13.png"
@@ -223,7 +242,6 @@ const Product = () => {
       </div>
 
       <div className={css.exploreAll}>
-        {/* <Link href={`/market/10`} style={{ textDecoration: 'none' }}> */}
         <div
           onClick={() => router.push('/market/10')}
           className={css.exploreImgContainer}
@@ -251,7 +269,6 @@ const Product = () => {
             </div>
           </div>
         </div>
-        {/* </Link> */}
 
         <Link href={`/market/11`} style={{ textDecoration: 'none' }}>
           <div className={css.exploreImgContainer}>

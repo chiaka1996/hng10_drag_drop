@@ -42,10 +42,14 @@ type barContextType = {
   bidComments: Comment[];
   products: product[];
   filtered: product[];
-  items: item[];
+  cartItems: item[];
+  // cartPriceList: number[];
   addItems: (x: item) => void;
+  deleteCartItem: (n: number) => void;
+  increaseItemQuantity: (n: number) => void;
+  decreaseItemQuantity: (n: number) => void;
   addCategory: (y: string[]) => void;
-  addPrice: (y: number) => void;
+  addPrice: (y: number | null) => void;
   addSearch: (y: string) => void;
   addArtist: (y: string[]) => void;
   cat: string[];
@@ -62,14 +66,18 @@ const barContextDefaultValues: barContextType = {
   sear: null,
   art: [],
   addItems: (x: item) => {},
-  items: [],
+  deleteCartItem: (n: number) => {},
+  increaseItemQuantity: (n: number) => {},
+  decreaseItemQuantity: (n: number) => {},
+  cartItems: [],
+  // cartPriceList: [],
   bidComments: [],
   products: [],
   filtered: [],
   openBar: () => {},
   closeBar: () => {},
   addCategory: (y: string[]) => {},
-  addPrice: (y: number) => {},
+  addPrice: (y: number | null) => {},
   addSearch: (y: string) => {},
   addArtist: (y: string[]) => {},
   filterProduct: () => {}
@@ -88,7 +96,8 @@ type Props = {
 export const State = ({ children }: Props) => {
   const router = useRouter();
   const [bar, setBar] = useState<boolean>(false);
-  const [items, setItems] = useState<item[]>([]);
+  const [cartItems, setItems] = useState<item[]>([]);
+  const [cartPriceList, setCartPriceList] = useState<number[]>([]);
   const [cat, setCategory] = useState<string[]>([]);
   const [pri, setPrice] = useState<number | null | string[]>(null);
   const [sear, setSearch] = useState<string | null | string[]>(null);
@@ -135,7 +144,7 @@ export const State = ({ children }: Props) => {
     {
       id: 3,
       name: 'Blanc',
-      price: 20.2,
+      price: 20.8,
       creator: 'Clemz',
       image: '/Rectangle3.png',
       country: 'Brazil',
@@ -252,8 +261,66 @@ export const State = ({ children }: Props) => {
     setBar(false);
   };
 
+  // function for adding items to the cart
   const addItems = (x: item) => {
+    setCartPriceList(list => [...list, x.price]);
+    localStorage.setItem(
+      'artsyCartPriceList',
+      JSON.stringify([...cartPriceList, x.price])
+    );
+    x.price = x.price * x.quantity;
     setItems(ite => [...ite, x]);
+    localStorage.setItem('artsyCartItem', JSON.stringify([...cartItems, x]));
+  };
+
+  const deleteCartItem = (n: number) => {
+    let mapped: item[] = [];
+    let priceList: number[] = [];
+
+    cartItems.map((item, i) => (n != i ? mapped.push(item) : ''));
+
+    cartPriceList.map((price, i) => (n != i ? priceList.push(price) : ''));
+
+    setItems([...mapped]);
+    setCartPriceList([...priceList]);
+    localStorage.setItem('artsyCartItem', JSON.stringify([...mapped]));
+    localStorage.setItem('artsyCartPriceList', JSON.stringify([...priceList]));
+  };
+
+  // increase item quantity in cart
+  const increaseItemQuantity = (n: number) => {
+    const mapp: item[] = [];
+    cartItems.map((item, i) => {
+      if (n == i) {
+        item.price = (item.quantity + 1) * cartPriceList[n];
+        item.quantity = item.quantity + 1;
+        mapp.push(item);
+      } else {
+        mapp.push(item);
+      }
+    });
+
+    setItems([...mapp]);
+    localStorage.setItem('artsyCartItem', JSON.stringify([...mapp]));
+  };
+
+  // decrease item quantity in cart
+  const decreaseItemQuantity = (n: number) => {
+    const mapp: item[] = [];
+    cartItems.map((item, i) => {
+      if (n == i) {
+        if (item.quantity > 1) {
+          item.price = (item.quantity - 1) * cartPriceList[n];
+          item.quantity = item.quantity - 1;
+        }
+        mapp.push(item);
+      } else {
+        mapp.push(item);
+      }
+    });
+
+    setItems([...mapp]);
+    localStorage.setItem('artsyCartItem', JSON.stringify([...mapp]));
   };
 
   const addCategory = (y: string[]) => {
@@ -261,12 +328,10 @@ export const State = ({ children }: Props) => {
   };
 
   const addArtist = (y: string[]) => {
-    console.log(typeof y);
     setArtist([...y]);
-    console.log(art);
   };
 
-  const addPrice = (y: number) => setPrice(y);
+  const addPrice = (y: number | null) => setPrice(y);
 
   const addSearch = (y: string) => setSearch(y);
 
@@ -277,7 +342,9 @@ export const State = ({ children }: Props) => {
         setFiltered(z => [...z, x]);
       } else {
         (cat.length == 0 ? true : cat.includes(x.category)) &&
-        (pri != null && !Array.isArray(pri) ? x.price <= pri : true) &&
+        (pri != null && !Array.isArray(pri) && pri > 0
+          ? x.price <= pri
+          : true) &&
         (art.length == 0 ? true : art.includes(x.creator)) &&
         (sear != null && !Array.isArray(sear)
           ? x.name.toLowerCase().indexOf(sear.toLowerCase()) != -1
@@ -289,6 +356,15 @@ export const State = ({ children }: Props) => {
   };
 
   useEffect(() => {
+    let cartItem = localStorage.getItem('artsyCartItem');
+    let cartPrice = localStorage.getItem('artsyCartPriceList');
+    if (typeof cartItem == 'string' && typeof cartPrice == 'string') {
+      setItems([...JSON.parse(cartItem)]);
+      setCartPriceList([...JSON.parse(cartPrice)]);
+    }
+  }, []);
+
+  useEffect(() => {
     filterProduct();
   }, [cat]);
 
@@ -298,19 +374,57 @@ export const State = ({ children }: Props) => {
 
   useEffect(() => {
     filterProduct();
-    router.push({
-      pathname: '/market/products',
-      query: {
-        category: cat,
-        price: pri && !Array.isArray(pri) ? pri : [],
-        artist: art,
-        search: sear && !Array.isArray(sear) ? sear : []
+    if (sear != null && sear != undefined) {
+      if (sear == '') {
+        router.push({
+          pathname: '/market/products',
+          query: {
+            category: cat,
+            price: pri && !Array.isArray(pri) ? pri : [],
+            artist: art,
+            search: []
+          }
+        });
+        return;
       }
-    });
+      router.push({
+        pathname: '/market/products',
+        query: {
+          category: cat,
+          price: pri && !Array.isArray(pri) && pri != 0 ? pri : [],
+          artist: art,
+          search: sear && !Array.isArray(sear) ? sear : []
+        }
+      });
+    }
   }, [sear]);
 
   useEffect(() => {
     filterProduct();
+
+    if (pri != null && pri != undefined) {
+      if (pri <= 0) {
+        router.push({
+          pathname: '/market/products',
+          query: {
+            category: cat,
+            price: [],
+            artist: art,
+            search: sear && !Array.isArray(sear) ? sear : []
+          }
+        });
+        return;
+      }
+      router.push({
+        pathname: '/market/products',
+        query: {
+          category: cat,
+          price: pri && !Array.isArray(pri) && pri != 0 ? pri : [],
+          artist: art,
+          search: sear && !Array.isArray(sear) ? sear : []
+        }
+      });
+    }
   }, [pri]);
 
   const value = {
@@ -319,8 +433,12 @@ export const State = ({ children }: Props) => {
     openBar,
     closeBar,
     products,
-    items,
+    cartItems,
+    cartPriceList,
     addItems,
+    deleteCartItem,
+    increaseItemQuantity,
+    decreaseItemQuantity,
     cat,
     pri,
     sear,
