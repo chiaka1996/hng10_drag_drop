@@ -44,10 +44,6 @@ type barContextType = {
   filtered: product[];
   cartItems: item[];
   // cartPriceList: number[];
-  addItems: (x: item) => void;
-  deleteCartItem: (n: number) => void;
-  increaseItemQuantity: (n: number) => void;
-  decreaseItemQuantity: (n: number) => void;
   addCategory: (y: string[]) => void;
   addPrice: (y: number | null) => void;
   addSearch: (y: string) => void;
@@ -65,10 +61,6 @@ const barContextDefaultValues: barContextType = {
   pri: null,
   sear: null,
   art: [],
-  addItems: (x: item) => {},
-  deleteCartItem: (n: number) => {},
-  increaseItemQuantity: (n: number) => {},
-  decreaseItemQuantity: (n: number) => {},
   cartItems: [],
   // cartPriceList: [],
   bidComments: [],
@@ -261,68 +253,6 @@ export const State = ({ children }: Props) => {
     setBar(false);
   };
 
-  // function for adding items to the cart
-  const addItems = (x: item) => {
-    setCartPriceList(list => [...list, x.price]);
-    localStorage.setItem(
-      'artsyCartPriceList',
-      JSON.stringify([...cartPriceList, x.price])
-    );
-    x.price = x.price * x.quantity;
-    setItems(ite => [...ite, x]);
-    localStorage.setItem('artsyCartItem', JSON.stringify([...cartItems, x]));
-  };
-
-  const deleteCartItem = (n: number) => {
-    let mapped: item[] = [];
-    let priceList: number[] = [];
-
-    cartItems.map((item, i) => (n != i ? mapped.push(item) : ''));
-
-    cartPriceList.map((price, i) => (n != i ? priceList.push(price) : ''));
-
-    setItems([...mapped]);
-    setCartPriceList([...priceList]);
-    localStorage.setItem('artsyCartItem', JSON.stringify([...mapped]));
-    localStorage.setItem('artsyCartPriceList', JSON.stringify([...priceList]));
-  };
-
-  // increase item quantity in cart
-  const increaseItemQuantity = (n: number) => {
-    const mapp: item[] = [];
-    cartItems.map((item, i) => {
-      if (n == i) {
-        item.price = (item.quantity + 1) * cartPriceList[n];
-        item.quantity = item.quantity + 1;
-        mapp.push(item);
-      } else {
-        mapp.push(item);
-      }
-    });
-
-    setItems([...mapp]);
-    localStorage.setItem('artsyCartItem', JSON.stringify([...mapp]));
-  };
-
-  // decrease item quantity in cart
-  const decreaseItemQuantity = (n: number) => {
-    const mapp: item[] = [];
-    cartItems.map((item, i) => {
-      if (n == i) {
-        if (item.quantity > 1) {
-          item.price = (item.quantity - 1) * cartPriceList[n];
-          item.quantity = item.quantity - 1;
-        }
-        mapp.push(item);
-      } else {
-        mapp.push(item);
-      }
-    });
-
-    setItems([...mapp]);
-    localStorage.setItem('artsyCartItem', JSON.stringify([...mapp]));
-  };
-
   const addCategory = (y: string[]) => {
     setCategory([...y]);
   };
@@ -402,7 +332,7 @@ export const State = ({ children }: Props) => {
   useEffect(() => {
     filterProduct();
 
-    if (pri != null && pri != undefined) {
+    if (pri != null && pri != undefined && !Array.isArray(pri)) {
       if (pri <= 0) {
         router.push({
           pathname: '/market/products',
@@ -435,10 +365,6 @@ export const State = ({ children }: Props) => {
     products,
     cartItems,
     cartPriceList,
-    addItems,
-    deleteCartItem,
-    increaseItemQuantity,
-    decreaseItemQuantity,
     cat,
     pri,
     sear,

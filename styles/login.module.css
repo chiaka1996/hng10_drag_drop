@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+.loginContainer{
+    width: 100%;
+    padding: 10% 5% 0 5%;
+    font-family: 'Nunito';
+    outline: none;
+}
+
+.loginHeader{
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 100%;
+    color: #001226;
+}
+
+.hurry, .create{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 300%;
+    color: #2B3A4A;
+}
+
+
+.inputContainer, .inputContainerError,.inputContainerSuccess{
+    margin: 5% 0 0 0;
+    font-family: 'Nunito';
+    position: relative;
+}
+
+.inputContainer label, .inputContainerError label, .inputContainerSuccess label{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #2B3A4A;
+}
+
+.inputContainer input, .inputContainerError input, .inputContainerSuccess input{
+    width: 95%;
+    height: 48px;
+    border: 1px solid #AAB3BD;
+    background: #FDFDFE;
+    border-radius: 8px;
+    /* color: #CCD0D4; */
+    /* color: #AAB3BD; */
+    color: #2B3A4A;
+    padding: 0 0 0 5%;
+    font-size: 16px;
+    outline: none;
+}
+
+.inputContainerError input{
+    border: 1px solid #F2B2AD;
+}
+
+.inputContainerSuccess input{
+    border: 1px solid #97BF84;
+}
+
+.error{
+    color: #900F06;
+    margin: 1% 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.passwordIcon{
+    position: absolute;
+    right: 5%;
+    top: 50%;
+}
+
+.passwordIconError{
+    position: absolute;
+    right: 5%;
+    top: 40%;
+}
+
+.forgotPassword{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #003571;
+    text-align: right;
+    margin: 5% 0 0 0;
+}
+
+.loginBtnDiv, .deleteBtnDiv{
+    width: 100%;
+    margin: 10% 0 0 0;
+    font-family: "Nunito";
+}
+
+.loginBtnDiv button, .deleteBtnDiv button{
+    width: 100%;
+    height: 48px;
+    background-color: #003571;
+    outline: none;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid #003571;
+    cursor: pointer;
+}
+
+.deleteBtnDiv button{
+    background-color: #d81709;
+    border: 1px solid #d81709;
+}
+
+.lineDivider{
+    margin: 15% 0 5% 0;
+    width: 100%;
+    height: 1px;
+    background-color: #AAB3BD;
+    position: relative;
+}
+
+.lineDivider::after{
+    content: 'Or login using';
+    position: absolute;
+    /* background-color: #ffffff; */
+    background-color: white;
+    font-size: 16px;
+    color: #2B3A4A;
+    top: -12px;
+    left: 34%;
+    min-width: 31%;
+    text-align: center;
+}
+
+.imgFlex{
+    margin: 15% auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%
+}
+
+.imgContainer{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #Ffffff;
+    box-shadow: 0px 0px 4px rgba(50, 15, 12, 0.03), 0px 2px 6px rgba(50, 15, 12, 0.08);
+    border-radius: 16px;
+}
+
+.imgDiv{
+    position: relative;
+    width: 40px;
+    height: 40px
+}
+
+.signUpDiv{
+    text-align: center;
+    margin: 10% 0 0 0;
+    color: #2B3A4A;
+    font-size: 16px;
+}
+
+.signUpDiv span{
+    font-weight: 700;
+    color: #003571;
+}
+
+
+/* signup page */
+
+.create{
+    font-size: 15px;
+    line-height: 120%;
+    margin: 2% 0 7% 0;
+}
+.checkboxContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 7% 0 0 0;
+
+}
+
+.checkbox{
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+
+.agree{
+    margin: 0 0 0 5%;
+}
+
+.agree span{
+    font-weight: 700;
+    color: #003571;
+}
+
+/* ////// ////// edit Information page ////////// */
+.userHouse{
+    padding: 5% 5% 5% 5%;
+    font-family: "Nunito";
+    font-style: normal;
+    background-color: #fdfdfe;
+    min-height: 100vh;
+    font-size: 16px;
+}
+
+.arrowDiv{
+    text-align: center;
+    font-weight: 800;
+    color: #001226;
+    position: relative;
+}
+
+.notificationArrow{
+    position: absolute;
+    top: 5%;
+    left: 0;
+}
+
+.pictureContainer{
+    text-align: center;
+    margin: 10% 0;
+}
+
+.picture{
+    border-radius: 50%;
+}
+
+.inputFile{
+    display: none;
+}
+
+.change{
+    font-size: 16px;
+    font-weight: 700;
+    color: #003571;
+}
+
+
+/* desktop view */
+@media screen and (min-width: 1000px) {
+    .loginContainer{
+        padding: 2% 2%;
+        font-family: 'Nunito';
+        outline: none;
+        background-color: rgb(247, 247, 247);
+        width: 30%;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+
+    .userHouse{
+    padding: 2% 2%;
+    font-family: "Nunito";
+    font-style: normal;
+    background-color: #fdfdfe;
+    min-height: 100vh;
+    font-size: 14px;
+    background-color: rgb(247, 247, 247);
+    width: 30%;
+    margin: 0 auto;
+    cursor: pointer;
+}
+}    

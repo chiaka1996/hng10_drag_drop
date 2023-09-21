@@ -31,9 +31,9 @@
     text-transform: uppercase;
 }
 
-.price{ 
-font-weight: 700;
-font-size: 28px;
+.tag{ 
+font-weight: 400;
+font-size: 14px;
 line-height: 157.6%;
 color: #333333;
 margin: 3% 0 0 0;
@@ -64,8 +64,8 @@ margin: 3% 0 0 0;
     }
 
     .price{
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 14px;
+        font-weight: 400;
     }
     
 }

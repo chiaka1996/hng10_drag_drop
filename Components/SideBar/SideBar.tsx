@@ -1,15 +1,31 @@
+import { useEffect, useState } from 'react';
 import nav from '../.././styles/SideBar.module.css';
 import Image from 'next/image';
 import { BarState } from '../../Context/Allcontext';
 import 'animate.css';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface prop {
   page: string;
 }
 
 const Sidebar = ({ page }: prop) => {
+  const router = useRouter();
+  const [checkedIn, setCheckedIn] = useState<string | null>(null);
   const { bar, closeBar } = BarState();
+
+  const Logout = () => {
+    localStorage.removeItem('galleryUser');
+    closeBar();
+    router.push('/login');
+  };
+
+  useEffect(() => {
+    const check = localStorage.getItem('galleryUser');
+    setCheckedIn(check);
+  }, []);
+
   return (
     <div className={bar ? nav.sideContainer : nav.sideContainer_false}>
       <div className={nav.logoContainer}>
@@ -35,7 +51,7 @@ const Sidebar = ({ page }: prop) => {
 
         <Link
           href={{
-            pathname: '/market/products'
+            pathname: '/gallery'
           }}
           style={{ textDecoration: 'none' }}
           onClick={closeBar}
@@ -43,35 +59,29 @@ const Sidebar = ({ page }: prop) => {
           <div
             className={page === 'market' ? nav.navLinksUnderline : nav.navLinks}
           >
-            Marketplace
+            Gallery
           </div>
         </Link>
 
-        <Link
-          href="/auction/auction"
-          style={{ textDecoration: 'none' }}
-          onClick={closeBar}
-        >
-          <div
-            className={
-              page === 'auction' ? nav.navLinksUnderline : nav.navLinks
-            }
+        {!checkedIn ? (
+          <Link
+            href="/login"
+            style={{ textDecoration: 'none' }}
+            onClick={closeBar}
           >
-            Auctions
+            <div
+              className={
+                page === 'login' ? nav.navLinksUnderline : nav.navLinks
+              }
+            >
+              Login
+            </div>
+          </Link>
+        ) : (
+          <div className={nav.navLinks} onClick={Logout}>
+            Log out
           </div>
-        </Link>
-
-        <Link
-          href="/auction/drop"
-          style={{ textDecoration: 'none' }}
-          onClick={closeBar}
-        >
-          <div
-            className={page === 'drop' ? nav.navLinksUnderline : nav.navLinks}
-          >
-            Drop
-          </div>
-        </Link>
+        )}
       </div>
 
       <div

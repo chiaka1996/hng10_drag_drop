@@ -17,21 +17,16 @@ const Footer = () => {
       </div>
 
       <div className={css.footerContainer}>
-        <div className={css.heading}>ARTSY.</div>
+        <div className={css.heading}>CHIAKA.</div>
         <div className={css.desktop}>
           <ul>
             <li>Home</li>
-            <li>Marketplace</li>
-            <li>Auctions</li>
-            <li>Drops</li>
+            <li>Gallery</li>
           </ul>
         </div>
         <div className={css.desktop}>
           <ul>
             <li>Blog</li>
-            <li>Wallets</li>
-            <li>Rates</li>
-            <li>High bids</li>
           </ul>
         </div>
         <div className={css.mobileAddress}>
@@ -46,7 +41,7 @@ const Footer = () => {
                   className="animate__animated animate__pulse animate__infinite"
                 />
               </section>
-              <div>artsystudios@gmail.com</div>
+              <div>chiakajunior@gmail.com</div>
             </li>
             <li className={css.listFlex}>
               <section className={css.addressImg}>
@@ -63,7 +58,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={css.rights}>
-        Artsy studios © 2022. All Rights Reserved.
+        Chiaka studios © 2022. All Rights Reserved.
       </div>
     </div>
   );
