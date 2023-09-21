@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ReactSortable, Sortable, MultiDrag } from 'react-sortablejs';
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  useSortable,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import NavBar from '../Components/NavBar/NavBar';
 import Sidebar from '../Components/SideBar/SideBar';
 import css from '../styles/market.module.css';
@@ -10,12 +18,20 @@ import { BarState } from '../Context/Allcontext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-// type galleryImg = {
-//   id: number;
-//   name: string;
-//   image: string;
-//   tag: string;
-// };
+const SortablePics = ({ pics }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: pics.id });
+
+  const styles = {
+    transition,
+    transform: CSS.Transform.toString()
+  };
+  return (
+    <div style={styles} ref={setNodeRef} {...attributes} {...listeners}>
+      <Product img={pics.image} name={pics.name} id={pics.id} tag={pics.tag} />
+    </div>
+  );
+};
 
 const Gallery = () => {
   const router = useRouter();
@@ -113,6 +129,20 @@ const Gallery = () => {
     }
   ];
 
+  const onDragEnd = event => {
+    const { active, over } = event;
+    if (active.id === over.id) {
+      return;
+    }
+
+    setFilterGallery(gal => {
+      const oldIndex = gal.findIndex(gal => gal.id === active.id);
+      const newIndex = gal.findIndex(gal => gal.id === over.id);
+
+      return arrayMove(gal, oldIndex, newIndex);
+    });
+  };
+
   const showCat = () => {
     setShowCategory(x => !x);
   };
@@ -186,16 +216,19 @@ const Gallery = () => {
           </div>
 
           <div className={css.prods}>
-            {filterGallery.map((prod, i) => (
-              <div key={i}>
-                <Product
-                  img={prod.image}
-                  name={prod.name}
-                  id={prod.id}
-                  tag={prod.tag}
-                />
-              </div>
-            ))}
+            <DndContext
+              collisionDetection={closestCenter}
+              onDragEnd={onDragEnd}
+            >
+              <SortableContext
+                items={filterGallery}
+                strategy={verticalListSortingStrategy}
+              >
+                {filterGallery.map((pic, i) => (
+                  <SortablePics key={pic.id} pics={pic} />
+                ))}
+              </SortableContext>
+            </DndContext>
           </div>
         </div>
       </div>
