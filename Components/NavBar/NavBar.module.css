@@ -110,7 +110,15 @@
     border-radius: 50%;
 }
 
-@media screen and (max-width: 1100px) {
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+    .linkContainer{
+        display: flex;
+        width: 30%;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 900px) {
     .navContainer{
         width: 96%;
     }
@@ -135,6 +143,5 @@
     .iconContainer{
         padding: 5% 0 0 0;
         width: 15%;
-    }
-    
+    } 
 }

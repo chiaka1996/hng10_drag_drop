@@ -20,7 +20,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/gallery.jsx",
-    "Components/Market/Products.jsx"
+    "Components/Pictures/Gallery.jsx"
   ],
   "exclude": ["node_modules"]
 }

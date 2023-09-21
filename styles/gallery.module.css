@@ -301,9 +301,7 @@
     }
 
      /* //////////////////////////mobile design//////////////////// */
-    @media only screen and (max-width: 1000px) {
-
-        /*/////////////css for market page///////////////////*/
+    @media only screen and (max-width: 900px) {
         .marketBody{
             background-color: white;
         }
@@ -324,6 +322,8 @@
 
         .prods{
             display: block;
+            margin: 8% 5%;
+            width: 90%;
         }
 
         .results{
@@ -371,121 +371,13 @@
             transform: translateY(100%);
             margin: 0 0 0 10%;
         }
+    }
 
-        /*/////////////////////// CSS FOR SINGLE PRODUCT PAGE [name].tsx  */
-        .itemContainer{
-            padding: 2% 2% 0 2%;
-        }
-
-        .productLink{
-            font-size: 14px;
-        }
-
-        .itemBreakdown{
-            height: 100%;
-            display: block;
-            padding: 5% 0 0 0;
-            border: none;
-            border-top: 1px solid #333333;
-        }
-
-        .rectangleImgContainer{
-            width: 100%;
-            height: 380px;
-            margin: auto auto;
-            position: relative;
-        }
-
-        .itemDescription{
-            border: none;
-        }
-
-        .itemHeader{
-            padding: 6% 0 0 0;
-            border: none;
-            display: flex;
-            flex-direction: row;
+    @media only screen and (min-width: 901px) and (max-width: 1200px) {
+        .prods{
+            margin: 8% 0 0 0;
+            display: grid;
+            grid-template-columns: 45% 45%;
             justify-content: space-between;
-        }
-
-        .headerName{
-            font-size: 18px;
-        }
-
-        .headerPrice{
-            font-size: 15px;
-            font-weight: 700;
-            transform: translateY(-12%);
-        }
-
-        .creatorDiv{
-        font-size: 20px;
-        padding: 6% 0;
-        }
-
-        .madeInItaly{
-            padding: 0 0 6% 0;
-        }
-
-        .views, .count{
-            padding: 0 0 6% 0;
-            font-size: 20px;
-        }
-
-        .count{
-            font-size: 28px;
-        }
-
-        .addToCart{
-            padding: 2% 0 5% 0;
-        }
-
-        .addToCart button{
-            height: 70px;
-        }
-
-        .loveContainer{
-            height: 70px;
-        }
-
-        .subs, .listings, .stat{
-            font-size: 22px;
-        }
-
-        .downArrow{
-            width: 23px;
-            height: 23px;
-        }
-
-        .exploreCollection{
-            box-shadow: none;
-            display: block;
-            text-align: center;
-            margin: 15% 0 15% 0;
-            height: auto;
-        }
-
-        .exploreCollection span{
-            font-size: 25px;
-            padding: 0 0;
-        }
-
-        .exploreButton{
-            display: none;
-        }
-
-        .exploreAll{
-            margin-left: 0;
-            max-width: 100%;
-        }
-
-        .exploreBtn{
-            margin: 10% 0 5% 0;
-        }
-
-        .exploreBtn button{
-            width: 70%;
-            height: 70px;
-            font-size: 25px;
         }
     }

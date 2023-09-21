@@ -1,13 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import css from './Products.module.css';
+import css from './Gallery.module.css';
 import Image from 'next/image';
-
-// interface prop {
-//   id: number;
-//   img: string;
-//   name: string;
-//   tag: string;
-// }
 
 const GalleryComponent = ({ img, name, id, tag }) => {
   return (

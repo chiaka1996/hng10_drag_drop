@@ -18,9 +18,9 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import NavBar from '../Components/NavBar/NavBar';
 import Sidebar from '../Components/SideBar/SideBar';
-import css from '../styles/market.module.css';
+import css from '../styles/gallery.module.css';
 import Image from 'next/image';
-import Product from '../Components/Market/Products';
+import Product from '../Components/Pictures/Gallery';
 import Footer from '../Components/Footer/Footer';
 import { useRouter } from 'next/router';
 
