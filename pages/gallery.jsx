@@ -1,12 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { DndContext, closestCenter } from '@dnd-kit/core';
+import {
+  DndContext,
+  closestCenter,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors
+} from '@dnd-kit/core';
+
 import {
   arrayMove,
   SortableContext,
   useSortable,
-  sortableKeyboardCoordinates,
   verticalListSortingStrategy
 } from '@dnd-kit/sortable';
+
 import { CSS } from '@dnd-kit/utilities';
 import NavBar from '../Components/NavBar/NavBar';
 import Sidebar from '../Components/SideBar/SideBar';
@@ -14,8 +22,6 @@ import css from '../styles/market.module.css';
 import Image from 'next/image';
 import Product from '../Components/Market/Products';
 import Footer from '../Components/Footer/Footer';
-import { BarState } from '../Context/Allcontext';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const SortablePics = ({ pics }) => {
@@ -35,6 +41,10 @@ const SortablePics = ({ pics }) => {
 
 const Gallery = () => {
   const router = useRouter();
+  const mouseSensor = useSensor(MouseSensor);
+  const touchSensor = useSensor(TouchSensor);
+
+  const sensors = useSensors(mouseSensor, touchSensor);
   const tagList = [
     'Editorial',
     'Fashion',
@@ -42,11 +52,10 @@ const Gallery = () => {
     'Art and Museum',
     'Nature'
   ];
-  const [tagsToFilter, setTagsToFilter] = useState([]);
+
   const [showCategory, setShowCategory] = useState(true);
   const [filterGallery, setFilterGallery] = useState([]);
-  const [mapThroughGallery, setMapThroughGallery] = useState([]);
-  const [check, setCheck] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   const gallery = [
     {
@@ -154,19 +163,21 @@ const Gallery = () => {
     }
   };
 
-  const searchFunction = e => {
+  const onChangeSearchInput = e => {
     let value = e.target.value;
+    setSearchText(value.toLowerCase());
+  };
+
+  const searchFunction = e => {
     let searchMap = [];
 
-    if (e.key === 'Enter') {
-      gallery.map((item, i) => {
-        if (item.tag.toLowerCase().includes(value.toLowerCase())) {
-          searchMap.push(item);
-        }
-      });
+    gallery.map((item, i) => {
+      if (item.tag.toLowerCase().includes(searchText)) {
+        searchMap.push(item);
+      }
+    });
 
-      setFilterGallery([...searchMap]);
-    }
+    setFilterGallery([...searchMap]);
   };
 
   useEffect(() => {
@@ -211,13 +222,17 @@ const Gallery = () => {
             <input
               type="text"
               placeholder="Search by Tags"
-              onKeyUp={searchFunction}
+              value={searchText}
+              onChange={onChangeSearchInput}
             />
+
+            <button onClick={searchFunction}>Search</button>
           </div>
 
           <div className={css.prods}>
             <DndContext
               collisionDetection={closestCenter}
+              sensors={sensors}
               onDragEnd={onDragEnd}
             >
               <SortableContext
